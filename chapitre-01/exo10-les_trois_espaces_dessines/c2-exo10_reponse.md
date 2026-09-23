@@ -4,34 +4,7 @@ Pas de code dans cet exercice. Le dessin ci-dessous est une coupe de la salle vu
 
 ## Le dessin
 
-```
-_________TL_____________________________________________________________________
-|                                                                              |
-|TV                                                                            |
-|                                                                              |
-|                                                                              |
-|                                                                              |
-|                                                                              |
-|                                                                              |
-|                                       O L                                    |
-|                                       |                                      |
-|                               V       |                                      |
-|                                       |                                      |
-|                                       |                                      |
-|                                       |                                      |
-|                                       |                                      |
-|                                       |                                      |
-|        TS                             |                                      |
-|  =============                        |                                      |
-|  |           |                        |                                      |
-|  |           |                        |                                      |
-|  |           |                        |                                      |
-|  |           |                        |                                      |
-|  |           |                        |                                      |
-|  |           |                        |                                      |
-|  |           |                        |                                      |
-________________________________________S_______________________________________
-```
+![1790204056280](image/c2-exo10_reponse/1790204056280.jpg)
 
 Légende :
 
@@ -55,3 +28,22 @@ C'est le programme qui choisit dans quel espace il demande les poses au casque, 
 | **VIEW** (`TV`)  | 0,80 m au-dessus des yeux, dans le repère de la tête | 1,50 + 0,80 =**2,30 m**, à z = -0,40 - 1,55 = -1,95 m                                     | La table est au plafond, sa moitié arrière sort par le mur du fond (elle occupe z de -2,25 à -1,65 pour 0,60 m de profondeur), et surtout elle**suit la tête** : elle bouge à chaque image, comme un réticule. |
 
 Seul STAGE donne une table à 0,80 m : c'est le seul espace où y = 0 veut dire le plancher, donc le seul où poser un décor a un sens physique.
+
+## Et si on veut une vraie table à 0,80 m du sol ?
+
+Quelle valeur de `y` faut-il écrire dans chaque espace ?
+
+| Espace | Valeur de y                                            | Commentaire                                                                                                                                                       |
+| ------ | ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| STAGE  | +0,80                                                  | Toujours la même, quoi qu'il arrive.                                                                                                                             |
+| LOCAL  | 0,80 - 1,70 =**-0,90**                           | C'est vrai seulement si l'utilisateur avait les yeux à 1,70 m au démarrage. Assis (yeux à 1,20 m), il faudrait -0,40. Le programme ne le sait pas.             |
+| VIEW   | 0,80 - y_tête(t),**différent à chaque image** | Aucune constante ne convient, il faudrait recalculer à chaque image en connaissant la pose de la tête dans le monde, c'est-à-dire repasser par un espace fixe. |
+
+Autre lecture possible de « une table à 80 cm » dans LOCAL, celle du cours (« quatre-vingts centimètres sous les yeux ») : y = -0,80. La table serait alors à 1,70 - 0,80 = 0,90 m du sol pour quelqu'un qui était debout, et à 1,20 - 0,80 = 0,40 m pour quelqu'un qui était assis. Dans aucun cas à 0,80 m.
+
+## Ce que je retiens
+
+- **VIEW** pour un réticule ou un affichage qui doit rester devant le regard.
+- **LOCAL** pour une expérience assise, où on ne se soucie pas du sol.
+- **STAGE** pour la salle : le décor, la table, les murs, tout ce qui est physique.
+- Une pose sans dire dans quel espace n'a pas plus de sens qu'une altitude sans dire par rapport à quoi.
