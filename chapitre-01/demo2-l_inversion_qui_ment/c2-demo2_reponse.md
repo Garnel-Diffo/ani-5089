@@ -1,9 +1,5 @@
 # Chapitre 2, démonstration 2 - L'inversion qui ment
 
-## Ce qu'il faut montrer
-
-Mon inversion générale qui rend l'identité sur une matrice dégénérée, sans le moindre message. Faire imaginer à la classe ce que cela donnerait dans un casque, puis le dire : la caméra revient à l'origine, sans rotation, et rien ne l'explique.
-
 ## Préparation
 
 Le programme de l'exercice 7, lancé sur une pose quelconque. Il affiche d'abord la comparaison sur une pose valide, puis sur une pose dégénérée fixée dans le code : position (1 ; 1,7 ; -2) et quaternion nul (0, 0, 0, 0).
@@ -57,12 +53,6 @@ La sortie de A est une matrice identité parfaite : elle a l'air d'une matrice d
 
 **5. Le contre-exemple.** La version B (inverse analytique) donne dans le même cas une matrice écrasée, avec une rotation nulle. C'est laid, mais visible : une image cassée se remarque, se teste (la norme du quaternion vaut 0) et se corrige, alors qu'une image simplement fausse se fait passer pour une image correcte.
 
-## Ce que je fais retenir
-
-C'est la catégorie de faute annoncée au chapitre 1 : elle ne plante pas, elle se sent. La phrase du module le dit pour l'inverse analytique : « exacte, et sans le garde-fou “singulier” qui rendrait silencieusement l'identité en cas de bug amont ».
-
 ## Ce que la classe a répondu
 
 Réponses à la question de l'étape 3 : « un écran noir », « l'image qui saute », « on a l'impression de tomber au sol ».
-
-Une seule des trois (« un écran noir ») est parmi les réponses attendues, et elle est fausse. Les deux autres se rapprochent de ce qui se passe vraiment : « l'image qui saute » décrit le changement brusque de point de vue, et « on a l'impression de tomber au sol » rejoint la caméra ramenée à la hauteur de l'origine, qui est le sol dans l'espace choisi. Ce qu'aucune des trois réponses ne dit, c'est que **rien ne l'explique** : ni message, ni plantage, ni journal. C'est cette absence de message qui fait de cette faute une faute qui se sent au lieu de se voir.

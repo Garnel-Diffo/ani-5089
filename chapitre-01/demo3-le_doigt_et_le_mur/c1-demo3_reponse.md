@@ -1,9 +1,5 @@
 # Chapitre 1, démonstration 3 - Le doigt et le mur
 
-## Ce qu'il faut montrer
-
-Faire faire à toute la classe l'expérience du doigt à trente centimètres, puis à trois mètres. Faire dire à la classe elle-même pourquoi il faudra dessiner deux fois.
-
 ## Préparation
 
 - Un mur du fond bien visible de toute la salle, avec quelque chose dessus comme repère (une affiche, un trait au tableau).
@@ -25,8 +21,6 @@ Chaque œil regarde la scène depuis un point de vue différent, les deux yeux �
 
 - on ne peut pas fabriquer la seconde image en décalant la première d'une quantité fixe, puisque le bon décalage est différent pour chaque objet ;
 - il faut donc **dessiner la scène deux fois**, depuis deux positions séparées de l'écart entre les yeux, avec deux matrices de vue.
-
-Et c'est le plus coûteux du parcours : tout ce qu'on sait faire à l'écran, il faudra le faire deux fois, dans le même budget de temps (exercice 7).
 
 ## Ce que la classe a dit
 

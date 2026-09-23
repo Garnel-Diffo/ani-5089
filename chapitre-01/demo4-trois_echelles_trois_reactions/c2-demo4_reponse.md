@@ -1,9 +1,5 @@
 # Chapitre 2, démonstration 4 - Trois échelles, trois réactions
 
-## Ce qu'il faut montrer
-
-Faire décrire ma salle par trois personnes de la classe, à trois facteurs d'échelle différents, sans leur dire lequel. Noter leurs mots au tableau. Conclure sur le pourquoi : l'auteur d'un monde est le plus mal placé pour en juger l'échelle.
-
 ## Préparation
 
 Le programme de l'exercice 11, qui affiche les dimensions de la salle multipliées par un facteur. Trois facteurs, dans un ordre que la classe ne connaît pas :
@@ -30,8 +26,6 @@ Le programme de l'exercice 11, qui affiche les dimensions de la salle multiplié
 | 1 | 0,6 | « une petite pièce, le plafond est bas, la porte est plus petite qu'une porte normale » |
 | 2 | 1,0 | « une pièce de séjour normale, rien de bizarre » |
 | 3 | 1,7 | « une très grande salle, le plafond est très haut, la table est énorme » |
-
-Chaque description va dans le sens du facteur, sans que les volontaires l'aient su : petite pour 0,6, normale pour 1,0, très grande pour 1,7. Aucun n'a dit qu'il y avait une erreur : ils ont décrit une sensation de taille.
 
 ## Conclusion : pourquoi l'auteur est le plus mal placé
 

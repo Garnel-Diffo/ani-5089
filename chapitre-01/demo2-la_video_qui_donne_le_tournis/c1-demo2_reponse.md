@@ -1,9 +1,5 @@
 # Chapitre 1, démonstration 2 - La vidéo qui donne le tournis
 
-## Ce qu'il faut montrer
-
-Ma séquence (celle de l'exercice 5, une caméra portée à la main pendant une marche rapide) à la classe, en plein écran, en la laissant réagir. Puis expliquer le conflit entre l'oreille interne et l'œil. Puis demander qui, dans la salle, n'a rien senti : il y en aura, et c'est une donnée importante.
-
 ## Préparation
 
 - La séquence de l'exercice 5, en plein écran, à durée limitée (je la coupe à une ou deux minutes, pas plus).
@@ -33,12 +29,3 @@ Ma séquence (celle de l'exercice 5, une caméra portée à la main pendant une 
 - Nombre de personnes ayant ressenti quelque chose (gêne, nausée, vertige, envie de détourner le regard) : 9 (37,5 %)
 - **Nombre de personnes qui n'ont rien senti** : 15 (62,5 %)
 - Ce que les personnes qui n'ont rien senti disent avoir regardé : 6 des 15 disent avoir surtout regardé le bord de l'écran.
-
-Le bord de l'écran est justement le repère que l'explication ci-dessus invoque (il rappelle au cerveau où est le vrai monde) : les réponses vont dans ce sens, sans le prouver. Six personnes ne suffisent pas, et il faudrait comparer avec ce que regardaient les 9 personnes gênées.
-
-## Pourquoi ceux qui n'ont rien senti sont une donnée importante
-
-- **Tout le monde n'est pas également sensible.** Avoir peu ou pas de gêne devant une vidéo ne dit rien sur l'expérience de la personne d'à côté. Dans une salle il y aura des gens à l'aise et d'autres qui ne le sont pas : la sensibilité varie.
-- **On ne conçoit pas pour la moyenne.** Comme pour l'image la plus lente (« on juge l'expérience à sa pire image »), on conçoit pour l'utilisateur **le plus sensible**. Si seuls ceux qui n'ont rien senti testent l'application, on n'apprend rien.
-- **Rien senti ne veut pas dire « pas de problème ».** Une fois le casque sur la tête, le conflit est bien plus fort, et une personne qui n'a rien senti sur écran peut être gênée en casque.
-- **Ça explique pourquoi les fautes passent inaperçues** : le développeur, habitué à son propre programme, peut ne rien sentir. La seule façon de trouver ces fautes est de faire essayer quelqu'un d'autre et de l'écouter.

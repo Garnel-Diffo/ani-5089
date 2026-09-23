@@ -121,22 +121,3 @@ ecart (norme)     : 5.439e-16
 ```
 
 L'écart est de l'ordre de 5 × 10⁻¹⁶, soit l'erreur d'arrondi d'un `double` : il est nul aux arrondis près, comme demandé.
-
-Dernier essai, pour voir ce que vaut le contrat « quaternion unitaire » : le même quaternion, mais arrondi à quatre décimales (0,1 ; 0,7071 ; 0 ; 0,7). Sa norme² tombe à 0,99999 :
-
-Entrée :
-
-```
-0.3 1.6 -2  0.1 0.7071 0 0.7  1 1 1
-```
-
-Sortie :
-
-```
-point de depart   : 1.000000 1.000000 1.000000
-apres la pose     : 1.431370 2.581410 -2.869930
-apres l'inverse   : 0.999981 0.999981 0.999981
-ecart (norme)     : 3.322e-05
-```
-
-L'écart n'est plus nul (3 × 10⁻⁵) : l'aller-retour revient à `|q|⁴` près, soit 0,999981 fois le point de départ. Rien ne plante et l'erreur est minuscule, mais elle s'accumule si on compose beaucoup de poses. C'est pour cela qu'on renormalise les quaternions au moment où on les fabrique (par exemple après une intégration), pas dans `Inverser`.

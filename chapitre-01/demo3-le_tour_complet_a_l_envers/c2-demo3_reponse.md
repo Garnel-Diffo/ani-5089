@@ -1,9 +1,5 @@
 # Chapitre 2, démonstration 3 - Le tour complet à l'envers
 
-## Ce qu'il faut montrer
-
-Ma vitesse angulaire sans le forçage du chemin court, sur un delta minuscule qui se lit comme un tour presque complet. Puis ajouter les trois lignes du forçage et remontrer.
-
 ## Préparation
 
 Le programme de l'exercice 9. Il calcule la vitesse angulaire moyenne entre deux orientations séparées de `dt` et affiche deux lignes : « avec forçage » puis « sans forçage ». Devant la classe, je commence par ne regarder que la ligne « sans forçage » (je cache l'autre), puis je fais apparaître les trois lignes du forçage dans le code (dans la version finale elles sont derrière l'interrupteur `forcer_chemin_court`) et je découvre la ligne « avec forçage ».
@@ -60,9 +56,3 @@ sans forcage : 0.0000 -5.9341 0.0000  (rad/s)
 ```
 
 Avec les trois lignes : 0,3491 rad/s, soit 20 °/s, le chemin court. Sans elles : -5,9341 rad/s, soit -340 °/s, le grand chemin.
-
-## Ce que je fais retenir
-
-- Le forçage tient en trois lignes : si le `w` du delta est négatif, on change le signe du quaternion.
-- Le cas absurde est facile à rater dans les tests : il faut que `q` et `-q` se croisent, et le programme ne plante pas.
-- Comme au chapitre 1 : la faute ne plante pas, elle se sent.

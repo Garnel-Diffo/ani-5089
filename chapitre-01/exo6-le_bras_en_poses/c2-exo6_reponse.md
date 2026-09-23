@@ -158,25 +158,4 @@ Le programme fait deux vérifications indépendantes. Dans les deux cas on n'a r
 1. La main obtenue en recomposant la chaîne est comparée à la main de repos, tournée directement par la rotation de l'épaule. Écart : 1 × 10⁻¹⁶.
 2. La position de la main vue depuis l'épaule (on applique l'inverse de la pose de l'épaule) est la même avant et après la rotation. Déplacement : 2 × 10⁻¹⁶.
 
-Ce sont des erreurs d'arrondi : la main suit exactement. Un autre essai avec des angles moins ronds, 45° pour l'épaule et 60° pour le coude :
-
-Entrée :
-
-```
-45 60
-```
-
-Sortie :
-
-```
-Epaule au repos :
-  coude  :   0.3000   0.0000   0.0000
-  main   :   0.4350   0.0000  -0.2338
-Epaule tournee de 45.0 degres :
-  coude  :   0.2121   0.0000  -0.2121
-  main   :   0.1423   0.0000  -0.4729
-ecart avec la main de repos tournee  : 2.776e-17
-deplacement de la main vue de l'epaule : 5.551e-17
-```
-
-À la main, au repos : le coude est en (0,30 ; 0 ; 0), et la main est à 0,27 m dans une direction tournée de 60° autour de `y` : (0,30 + 0,27 cos 60° ; 0 ; -0,27 sin 60°) = (0,435 ; 0 ; -0,2338). C'est ce qu'affiche le programme.
+Ce sont des erreurs d'arrondi : la main suit exactement.

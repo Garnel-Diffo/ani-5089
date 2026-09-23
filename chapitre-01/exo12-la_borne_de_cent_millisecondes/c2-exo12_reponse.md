@@ -1,13 +1,5 @@
 # Chapitre 2, exercice 12 - La borne de cent millisecondes
 
-## La question
-
-Extrapoler à vitesse constante une tête qui tourne, sur des durées de 10 ms à 1 s, comparer à la vraie pose obtenue en simulant le mouvement pas à pas, tracer l'erreur, et dire où la borne de 100 ms se justifie.
-
-## Le piège de l'énoncé
-
-Si la tête tourne vraiment à 180 °/s **de façon constante**, l'extrapolation est exacte et l'erreur est nulle quelle que soit la durée. Je l'ai vérifié (voir plus bas) et ça ne dit rien de la borne. Pour qu'il y ait une erreur, la vraie tête doit changer de vitesse : c'est ce qu'elle fait, car un mouvement de tête commence, atteint un pic, puis s'arrête. J'ai donc simulé un vrai mouvement.
-
 ## Le modèle du vrai mouvement
 
 Un virage de tête de **48° en 0,5 s** autour de l'axe vertical, avec la loi de vitesse « jerk minimal » (angle = 48° · (10s³ - 15s⁴ + 6s⁵), avec s = t/0,5). C'est un modèle classique des mouvements volontaires (Flash et Hogan, 1985) et il donne un pic de vitesse de 1,875 × 48 / 0,5 = **180 °/s**. Après 0,5 s la tête est arrêtée. C'est un modèle, pas une mesure sur de vraies têtes.
@@ -185,16 +177,6 @@ int main() {
 }
 ```
 
-Vérifications du programme, avant tout résultat :
-
-```
-# ecart simulateur / formule exacte : 4.62e-07 degres (max sur 1,5 s)
-# vitesse constante 180 deg/s, 1 s : erreur = 2.74e-13 degres
-```
-
-- le simulateur pas à pas retrouve la formule exacte de l'angle à moins de 5 × 10⁻⁷ degré sur 1,5 s ;
-- à vitesse constante (180 °/s), l'extrapolation d'une seconde et la simulation pas à pas sont identiques à 3 × 10⁻¹³ degré, donc le code d'extrapolation est juste, et l'erreur des tableaux ci-dessous vient bien de la physique du mouvement.
-
 ## Résultats
 
 Erreur d'orientation, en degrés (angle de la rotation qui sépare la pose extrapolée de la vraie pose) :
@@ -231,13 +213,9 @@ Les horizons où l'extrapolation devient **pire que ne rien faire** (la premièr
 # scenario C : l'extrapolation devient pire que ne rien faire a partir de H = 97 ms
 ```
 
-## Lecture
+## Où la borne de cent millisecondes se justifie
 
-**Comment l'erreur grandit.** Dans le cas A, elle passe de 0,002° à 10 ms à 1,83° à 100 ms : 960 fois plus pour une durée 10 fois plus longue, donc en gros comme le cube du temps. À vitesse maximale l'accélération est nulle, et l'erreur ne vient que de la façon dont l'accélération change. Dans les cas B et C elle grandit comme le carré du temps (0,053° à 10 ms, 4,4° et 5,2° à 100 ms) : la tête accélère ou freine et l'extrapolation l'ignore.
-
-**Aux durées qu'on utilise vraiment** (le temps qui sépare la mesure de l'affichage est d'une vingtaine de millisecondes, un peu plus avec une image), l'extrapolation est très utile. À 20 ms l'erreur est de 0,015° (A), 0,21° (B) et 0,22° (C), contre 3,6°, 2,2° et 1,8° si on ne fait rien : de 8 à 230 fois mieux. À 30 ms elle reste sous le demi-degré dans les trois cas (0,05°, 0,47°, 0,49°).
-
-**Là où la borne se justifie.** L'extrapolation devient plus mauvaise que ne rien faire :
+L'extrapolation devient plus mauvaise que ne rien faire :
 
 - à **97 ms** dans le cas C (la tête freine) : à 100 ms l'erreur est de 5,2° contre 4,9°. L'extrapolation continue à faire tourner la tête à 101 °/s alors qu'elle est en train de s'arrêter ;
 - à 267 ms dans le cas A et à 851 ms dans le cas B, donc bien plus tard.
@@ -245,12 +223,6 @@ Les horizons où l'extrapolation devient **pire que ne rien faire** (la premièr
 La borne de cent millisecondes tombe donc pile là où, dans le pire de mes trois cas, on passe de « l'extrapolation aide » à « l'extrapolation ment plus qu'elle n'aide ». Elle est prudente pour A et B, juste pour C. Et l'erreur y est déjà de plusieurs degrés (1,8° à 5,2° à 100 ms), alors qu'à la durée utile de 20 à 30 ms elle est de quelques dixièmes de degré. Au-delà, on ne corrige plus un retard de quelques millisecondes : on invente un mouvement que la tête n'a pas fait. À 500 ms l'erreur est de 66° dans le cas A alors qu'il ne reste que 24° de virage à la tête : l'extrapolation fait tourner la tête bien au-delà de l'endroit où elle s'est arrêtée.
 
 Un mouvement de tête entier dure ici 0,5 s. Cent millisecondes en font un cinquième : sur cette échelle le modèle « la vitesse ne change pas » n'est plus crédible.
-
-## Limites
-
-- Un seul mouvement modélisé (48° en 0,5 s autour d'un seul axe) et trois instants : une tête réelle change de direction, tourne autour de plusieurs axes, s'arrête plus ou moins brusquement. Les chiffres donnent un ordre de grandeur, pas une loi.
-- Je compare des orientations, pas ce qu'on voit à l'écran : une erreur de 1° n'a pas le même aspect selon la résolution angulaire du casque.
-- Les vrais runtimes fusionnent plusieurs capteurs et bornent eux aussi l'extrapolation, mais ce programme n'en simule aucun.
 
 ## Source
 

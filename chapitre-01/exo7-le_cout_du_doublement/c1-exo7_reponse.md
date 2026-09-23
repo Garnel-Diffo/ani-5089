@@ -17,22 +17,7 @@ banc 6000 logique 1000
 
 ## La mesure : le rendu seul
 
-Cinq essais de mille images pour chaque mode, sur la même machine que l'exercice 6 (portable de 2015, Core i5-5300U, écran 60 Hz). Moyenne / maximum en ms :
-
-| Mode | Essai | logique moy. / max (ms) | dessin moy. / max (ms) | présentation moy. / max (ms) |
-|---|---|---|---|---|
-| rendu | 1 | 0,000 / 0,00 | 3,045 / 18,98 | 1,396 / 8,37 |
-| rendu | 2 | 0,000 / 0,00 | 3,520 / 32,39 | 1,527 / 23,79 |
-| rendu | 3 | 0,000 / 0,00 | 4,515 / 48,00 | 4,155 / 97,62 |
-| rendu | 4 | 0,000 / 0,00 | 4,460 / 33,22 | 1,654 / 32,26 |
-| rendu | 5 | 0,000 / 0,00 | 3,448 / 19,72 | 1,472 / 9,38 |
-| logique | 1 | 0,991 / 7,85 | 0,000 / 0,00 | 0,000 / 0,00 |
-| logique | 2 | 0,951 / 4,84 | 0,000 / 0,00 | 0,000 / 0,00 |
-| logique | 3 | 0,947 / 16,90 | 0,000 / 0,00 | 0,000 / 0,00 |
-| logique | 4 | 1,076 / 20,14 | 0,000 / 0,00 | 0,000 / 0,00 |
-| logique | 5 | 0,970 / 11,79 | 0,000 / 0,00 | 0,000 / 0,00 |
-
-Comme un essai peut être perturbé par le système (le troisième essai du mode `rendu` a eu une image de 408 ms), je retiens la **médiane des cinq moyennes**, plus solide qu'une moyenne des moyennes :
+Cinq essais de mille images par mode, sur la même machine que l'exercice 6. Valeurs retenues : médiane des moyennes des cinq essais (un essai du mode `rendu` a été perturbé par le système, avec une image de 408 ms).
 
 | | Moyenne par image (médiane des 5 essais) | Fourchette des 5 essais |
 |---|---|---|
@@ -79,8 +64,3 @@ Pour que tout tienne, il faut `2 × dessin + présentation + logique ≤ budget`
 À 72 Hz, il suffirait de diviser le coût du dessin par deux. À 90 Hz il faudrait le diviser par douze, ce qui revient à changer de méthode de rendu. À 120 Hz, sur cette machine, ce programme est hors de portée.
 
 Où gagner ? Mon programme dessine 6000 carrés de 14 × 14 pixels, soit 1,18 million de pixels écrits pour une image de 480 000 pixels : chaque pixel est écrit en moyenne 2,45 fois. Réduire cette surcharge, dessiner moins de carrés (éliminer ceux qui sont cachés ou hors champ), ou baisser la résolution de chaque vue sont les pistes les plus directes. Pour la présentation, il faudrait la faire une seule fois par image avec les deux vues.
-
-## Réserves
-
-- Ce banc dessine sur le processeur, sans GPU, et une scène 2D très simple : les valeurs absolues n'ont rien à voir avec un casque. Ce qui compte est la méthode : mesurer le rendu seul, doubler ce qui se double (pas la logique), retrancher du budget de l'application, en déduire ce qu'il faut réduire.
-- Les mesures ont une forte variabilité : le troisième essai en mode `rendu` a des moyennes de 4,5 (dessin) et 4,2 ms (présentation) alors que les autres sont vers 3,0 à 3,5 et 1,4 à 1,7 ms. J'ai gardé la médiane pour cela.

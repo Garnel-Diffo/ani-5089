@@ -125,5 +125,3 @@ composer puis appliquer : 0.170470 1.700000 -0.470951
 appliquer B puis A      : 0.170470 1.700000 -0.470951
 ecart (norme)           : 2.483e-16
 ```
-
-Dans les deux cas, composer puis appliquer donne le même point qu'appliquer `B` puis `A`, avec un écart de l'ordre de 10⁻¹⁶ : c'est de l'arrondi de `double`.

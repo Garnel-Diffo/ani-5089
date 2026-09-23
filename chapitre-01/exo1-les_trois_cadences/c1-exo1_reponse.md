@@ -11,5 +11,3 @@ La durée d'une image, en millisecondes, est 1000 divisé par la fréquence en h
 | 120 Hz  | 1000 / 120 = 8,333 | 8,3 ms             | 8,3 - 8    | **0,3 ms**              |
 
 Les trois nombres à retenir pour le chapitre 10 : **5,9 ms, 3,1 ms et 0,3 ms** (avec les durées d'image 13,9, 11,1 et 8,3 ms).
-
-Avec les valeurs non arrondies, on trouve 5,89, 3,11 et 0,33 ms, qui s'arrondissent aux mêmes chiffres au dixième.

@@ -122,37 +122,3 @@ rotation puis translation    0.0000 3.0000 -1.0000
 translation puis rotation    0.0000 3.0000 -1.0000
 ecart                        0.0000
 ```
-
-Les deux autres cas, pour vérifier : orientation identité, puis position nulle avec une rotation quelconque (45° autour de `y`).
-
-Entrée :
-
-```
-1 2 3  0 0 0 1  4 5 6
-```
-
-Sortie :
-
-```
-rotation puis translation    5.0000 7.0000 9.0000
-translation puis rotation    5.0000 7.0000 9.0000
-ecart                        0.0000
-```
-
-Entrée :
-
-```
-0 0 0  0 0.3826834323650898 0 0.9238795325112867  1 2 3
-```
-
-Sortie :
-
-```
-rotation puis translation    2.8284 2.0000 1.4142
-translation puis rotation    2.8284 2.0000 1.4142
-ecart                        0.0000
-```
-
-## Pourquoi c'est important
-
-Si on se trompe d'ordre, le programme ne plante pas : les objets se mettent simplement à tourner autour de l'origine du monde au lieu de tourner sur place. C'est une erreur qui se voit à l'écran mais qu'aucun message n'annonce.

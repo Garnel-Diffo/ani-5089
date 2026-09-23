@@ -164,24 +164,7 @@ B - conjugue + translation opposee :
 ecart maximum sur les 16 coefficients : 2.220e-16
 ```
 
-Avec un quaternion quelconque (0,2 ; 0,3 ; 0,1 ; 0,9274…), pas de coefficient « rond » à deviner :
-
-```
-=== Pose valide ===
-A - inversion generale :
-    0.8000    0.3055   -0.5164   -1.2830
-   -0.0655    0.9000    0.4309   -0.6163
-    0.5964   -0.3109    0.7400    0.8149
-    0.0000    0.0000    0.0000    1.0000
-B - conjugue + translation opposee :
-    0.8000    0.3055   -0.5164   -1.2830
-   -0.0655    0.9000    0.4309   -0.6163
-    0.5964   -0.3109    0.7400    0.8149
-    0.0000    0.0000    0.0000    1.0000
-ecart maximum sur les 16 coefficients : 2.220e-16
-```
-
-L'écart maximum sur les seize coefficients est de 2 × 10⁻¹⁶ dans les deux cas : les deux méthodes donnent la même matrice, aux arrondis près.
+L'écart maximum sur les seize coefficients est de 2 × 10⁻¹⁶ : les deux méthodes donnent la même matrice, aux arrondis près.
 
 ## Une pose dégénérée
 
@@ -206,5 +189,3 @@ Ce qu'on voit :
 
 - **A rend l'identité.** Aucune erreur, aucun message, la sortie a l'air d'une matrice de vue tout à fait ordinaire. Dans un casque, la caméra se retrouve à l'origine, sans rotation, et rien ne l'explique : la pose (1 ; 1,7 ; -2) est simplement perdue.
 - **B rend une matrice écrasée** (rotation nulle, translation nulle) : tout le monde s'effondre sur un point. C'est laid, mais ça se remarque tout de suite et ça se teste (la norme du quaternion vaut 0). La faute ne se cache pas derrière une valeur plausible.
-
-C'est exactement le sens de la phrase du module : l'inverse analytique plutôt que l'inversion générale, « exacte, et sans le garde-fou “singulier” qui rendrait silencieusement l'identité en cas de bug amont ». Le bug (un quaternion nul) est en amont, l'inversion générale le transforme en image fausse mais calme, alors que l'inverse analytique le laisse visible.

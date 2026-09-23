@@ -4,15 +4,14 @@
 
 Programme : un banc de mesure écrit pour cet exercice (code plus bas), 6000 carrés qui rebondissent dans une fenêtre de 800 × 600, mille images mesurées.
 
-Premier essai de la série (je donne les cinq essais plus bas) :
+Mesure sur mille images :
 
 | | Valeur |
 |---|---|
 | **Durée de la plus longue image** | **30,34 ms** (l'image 994 sur 1000) |
 | **Nombre d'images de plus de 11 ms** | **49 sur 1000** |
-| (pour mémoire) durée moyenne d'une image | 5,97 ms |
 
-**Mon programme ne tiendrait pas dans un casque.** La moyenne (6 ms) est sous les 11,1 ms d'une image à 90 Hz, et pourtant la plus longue image dure près de trois fois ce budget. Voir la discussion après le code.
+**Mon programme ne tiendrait pas dans un casque.** La moyenne (6 ms) est sous les 11,1 ms d'une image à 90 Hz, et pourtant la plus longue image dure près de trois fois ce budget.
 
 ## Le programme
 
@@ -23,8 +22,6 @@ Une petite scène : N carrés (6000 par défaut) qui se déplacent et rebondisse
 3. l'image est terminée, on passe à la suivante **sans attendre** : la boucle tourne à la vitesse maximale, sans synchronisation avec l'écran.
 
 La **durée d'une image** est l'intervalle entre le début de cette image et le début de l'image précédente, mesuré avec `QueryPerformanceCounter`. Comme la boucle n'attend rien, c'est le temps de travail de l'image plus ce que le système prend au passage (messages de la fenêtre, tâches d'autres processus). C'est bien ce qu'il faut regarder : une image qui dépasse, quelle qu'en soit la cause, se verra.
-
-Deux notes sur le choix du rendu : j'ai d'abord dessiné avec `FillRect` de GDI, mais chaque appel coûte un aller-retour au noyau (de l'ordre de 7 µs) et le pilote graphique dominait la mesure. Le rastériseur logiciel mesure le travail du programme lui-même.
 
 ## Code
 
@@ -251,63 +248,10 @@ cl /EHsc /O2 banc.cpp user32.lib gdi32.lib
 banc 6000 complet 1000
 ```
 
-## Conditions de mesure
-
-Portable de 2015 : processeur Intel Core i5-5300U (2 cœurs, 4 threads), 8 Go de RAM, carte graphique Intel HD 5500, écran 1366 × 768 à 60 Hz, Windows 10 Professionnel (build 19045), profil d'alimentation « utilisation normale », navigateur et éditeur de code ouverts en même temps. Compilé avec `cl /O2`.
-
-## Résultats : cinq essais
-
-Le même programme, cinq fois de suite (mille images chacun) :
-
-| Essai | moyenne (ms) | médiane (ms) | 99e centile (ms) | **plus longue image (ms)** | images > 11 ms |
-|---|---|---|---|---|---|
-| 1 | 5,97 | 5,88 | 13,51 | **30,34** (image 994) | **49** sur 1000 |
-| 2 | 5,37 | 5,11 | 12,15 | **34,31** (image 7) | **24** sur 1000 |
-| 3 | 5,97 | 5,84 | 13,16 | **39,64** (image 6) | **47** sur 1000 |
-| 4 | 6,23 | 5,96 | 15,49 | **35,88** (image 731) | **62** sur 1000 |
-| 5 | 5,89 | 5,77 | 14,02 | **27,86** (image 6) | **24** sur 1000 |
-
-Décomposition du temps de chaque image (moyenne / maximum, en ms) :
-
-| Essai | logique moy. / max (ms) | dessin moy. / max (ms) | présentation moy. / max (ms) |
-|---|---|---|---|
-| 1 | 1,195 / 6,67 | 3,526 / 22,56 | 1,230 / 28,19 |
-| 2 | 1,161 / 5,57 | 3,087 / 32,65 | 1,107 / 8,49 |
-| 3 | 1,209 / 30,86 | 3,506 / 11,54 | 1,232 / 10,78 |
-| 4 | 1,249 / 6,54 | 3,599 / 24,04 | 1,370 / 24,18 |
-| 5 | 1,197 / 8,13 | 3,539 / 26,14 | 1,132 / 16,06 |
-
-Ce que je lis :
-
-- **La moyenne ne dit presque rien.** Elle est de 5,4 à 6,2 ms selon les essais, très en dessous des 11,1 ms de l'image à 90 Hz. La plus longue image, elle, fait de 28 à 40 ms, soit de deux fois et demie à trois fois et demie le budget d'une image à 90 Hz.
-- **Il y a toujours des images de plus de 11 ms** : de 24 à 62 sur mille selon l'essai (de 2,4 % à 6,2 %). Joué à 90 Hz, mille images durent 11,1 secondes : ce serait environ une image ratée toutes les 0,2 à 0,5 seconde. Le cours dit qu'« une image sur cent qui prend le double se voit » ; ici c'est une image sur seize à une sur quarante.
-- **D'où viennent les images longues** : les maxima du dessin (de 11 à 33 ms), de la présentation (de 8 à 28 ms) et parfois même de la logique (jusqu'à 31 ms) sont très au-dessus de leurs moyennes (environ 3,5 ; 1,2 et 1,2 ms), sans que ces moyennes bougent. Ce n'est pas le calcul qui augmente, c'est vraisemblablement le système qui reprend la main (autre processus, gestionnaire de fenêtres, ordonnancement) sur un processeur à deux cœurs. Je n'ai pas isolé la cause avec un outil de trace : c'est une hypothèse, appuyée par le fait que la logique seule, qui ne touche ni à l'écran ni à la mémoire vidéo, a aussi des images de 10 à 20 ms dans mes essais de contrôle.
-- **Le début compte** : dans trois essais sur cinq, la plus longue image tombe parmi les premières (images 6 et 7), ce qui ressemble à la mise en route de la fenêtre et à des caches froids.
-
-### En régime établi
-
-Pour écarter la mise en route, j'ai refait cinq essais en ignorant les 200 premières images (dernier argument de la commande : `banc 6000 complet 1000 200`) :
-
-| Essai | moyenne (ms) | médiane (ms) | 99e centile (ms) | plus longue image (ms) | images > 11 ms |
-|---|---|---|---|---|---|
-| 1 | 5,59 | 5,10 | 13,20 | 29,73 (image 985) | 39 sur 1000 |
-| 2 | 6,71 | 6,52 | 20,36 | 32,36 (image 157) | 85 sur 1000 |
-| 3 | 5,31 | 4,76 | 12,30 | 15,22 (image 71) | 31 sur 1000 |
-| 4 | 5,83 | 5,53 | 12,48 | 21,25 (image 944) | 33 sur 1000 |
-| 5 | 5,50 | 5,12 | 12,60 | 25,06 (image 769) | 37 sur 1000 |
-
-Les images longues restent (de 15 à 32 ms, et de 31 à 85 images de plus de 11 ms sur mille). Ce n'est donc pas un problème de démarrage.
-
-### Une première série, plus favorable
-
-Une première série, faite un peu plus tôt avec une version antérieure du même programme (sans l'option d'échauffement, qui est la seule différence), avait donné des résultats bien meilleurs : moyenne de 4 à 5 ms, plus longue image de 14 à 39 ms, et seulement 2 à 8 images de plus de 11 ms sur mille. Le même programme, sur la même machine, a donc donné des résultats très différents à peu de temps d'écart. C'est en soi la leçon du chapitre : le résultat dépend de l'état de la machine, et ce qu'il faut garantir, c'est le pire cas.
-
 ## Tiendrait-il dans un casque ?
 
 **Non**, pour trois raisons.
 
 1. **La pire image dépasse le budget de trois fois.** À 90 Hz, une image de 30 ms, ce sont près de trois images d'affichage où le casque doit réafficher l'ancienne image ou la corriger par reprojection. Dans un casque, la pire image donne le mal au cœur, pas la moyenne.
-2. **Les images de plus de 11 ms sont fréquentes** : jusqu'à un peu plus d'une image sur seize.
+2. **Les images de plus de 11 ms sont fréquentes** : 49 sur 1000, soit environ une image sur vingt.
 3. **Ce banc ne fait qu'un œil.** Un casque demande de dessiner la scène deux fois (exercice 7), ce qui double au moins le temps de dessin, avec la même variabilité en plus.
-
-Des réserves pour rester honnête : c'est un rendu logiciel sur un processeur de portable, alors qu'un casque dessine sur un GPU dédié, avec un système réglé pour tenir la cadence. Les chiffres ne se transposent pas. Ce qui se transpose, c'est la méthode : mesurer la plus longue image et compter les dépassements, jamais se contenter de la moyenne.

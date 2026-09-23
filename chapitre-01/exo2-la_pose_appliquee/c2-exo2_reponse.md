@@ -122,5 +122,3 @@ Sortie :
 ```
 0.0000 2.6000 0.0000
 ```
-
-Les trois résultats concordent avec le calcul fait à la main.

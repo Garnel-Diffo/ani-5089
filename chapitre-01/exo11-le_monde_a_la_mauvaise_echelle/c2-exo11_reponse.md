@@ -137,14 +137,6 @@ Message d'erreur (sortie d'erreur, code retour 1) :
 Il faut un facteur strictement positif.
 ```
 
-## Protocole
-
-1. Choisir trois personnes qui n'ont pas vu le programme et ne savent pas quelle est la vraie salle.
-2. Donner à chacune la sortie d'un facteur différent, sans lui dire lequel (ni qu'il y a un facteur). Attribuer les facteurs dans un ordre que la personne ne peut pas deviner.
-3. Lui demander de décrire la salle avec ses propres mots : grande ou petite, plafond, porte, table, ce qui la frappe. Noter ses mots tels quels.
-
-Le programme n'affiche que des nombres, donc la personne doit imaginer la pièce à partir de mesures : c'est une version plus pauvre de ce qu'on verrait dans un casque, où l'échelle se sent avant de se calculer.
-
 ## Les trois descriptions
 
 | Personne | Facteur (caché à la personne) | Ses mots, tels quels |
@@ -152,11 +144,3 @@ Le programme n'affiche que des nombres, donc la personne doit imaginer la pièce
 | 1 | 0,6 | « une petite pièce, le plafond est bas, la porte est plus petite qu'une porte normale » |
 | 2 | 1,0 | « une pièce de séjour normale, rien de bizarre » |
 | 3 | 1,7 | « une très grande salle, le plafond est très haut, la table est énorme » |
-
-## Ce que j'en tire
-
-- **Les trois descriptions suivent le facteur.** Avec 0,6, la personne 1 décrit une pièce petite, un plafond bas, une porte plus petite que la normale (1,50 m de plafond, 1,20 m de porte). Avec 1,0, la personne 2 ne trouve « rien de bizarre ». Avec 1,7, la personne 3 décrit une salle très grande, un plafond très haut, une table énorme (4,25 m de plafond, table à 1,36 m). Les personnes jugent d'après les tailles qu'elles connaissent (une porte, un plafond, une table), c'est-à-dire les repères que le protocole leur demandait de regarder.
-- **Une échelle fausse ne casse rien de visible** : le programme s'exécute sans erreur, avec un facteur de 0,6 comme de 1,7. Aucune des trois personnes ne dit « il y a une erreur » : elles décrivent une pièce petite ou grande, pas une pièce fausse. Une salle de 8,5 m sur 6,8 m existe, donc la description « très grande » n'est pas un diagnostic.
-- **L'auteur du monde est le plus mal placé pour la juger** : il connaît les vraies valeurs, son cerveau accepte les tailles. Ici, moi qui ai écrit la salle, je sais que la porte doit faire 2 m et que 3,40 m est faux, alors que la personne 3, qui n'a que la sortie sous les yeux, ne sait pas que la vraie porte fait 2 m : elle sent que c'est grand, sans savoir que c'est faux. Sans référence, l'écart se ressent mais ne se dénonce pas.
-- **La seule méthode** : faire essayer à quelqu'un d'autre, et l'écouter. Ici, les mots des trois personnes suffisent à retrouver le sens de l'erreur (petit, normal, grand) alors qu'elles ignorent qu'il y a un facteur.
-- **Limite** : les personnes n'avaient que des nombres, pas un casque, et elles étaient trois. En casque, l'échelle se sent avant de se calculer (« je me sens petit ») ; ici, on ne peut conclure que sur le sens de l'erreur, pas sur son ampleur.

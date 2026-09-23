@@ -133,35 +133,3 @@ sans forcage : 0.0000 0.0000 -624.8279  (rad/s)
 | **sans forçage** | **-624,83 rad/s** autour de `z` | **-35 800 °/s** |
 
 Sans le forçage, l'angle lu est 358° dans le sens inverse au lieu de 2° dans le bon sens : une vitesse 179 fois trop grande et de signe contraire. Si on extrapolait la pose avec cette vitesse, la tête ferait presque un tour complet à l'envers en dix millisecondes, alors que la tête a bougé de deux degrés.
-
-Autre exemple, celui que donne le cours avec des angles : aller de 350° à 10° autour de `y`. Les quaternions sont `q0 = (0 ; sin 175° ; 0 ; cos 175°)` (avec `w` négatif) et `q1 = (0 ; sin 5° ; 0 ; cos 5°)`, `dt = 1 s`. La bonne réponse est 20° en une seconde (via 0°). La soustraction naïve prend l'autre chemin, 340° :
-
-Entrée :
-
-```
-0 0.087155742747658174 0 -0.99619469809174555   0 0.087155742747658174 0 0.99619469809174555   1
-```
-
-Sortie :
-
-```
-avec forcage : 0.0000 0.3491 0.0000  (rad/s)
-sans forcage : 0.0000 -5.9341 0.0000  (rad/s)
-```
-
-Avec forçage : 0,3491 rad/s = 20 °/s. Sans forçage : -5,9341 rad/s = -340 °/s.
-
-Dernier cas, le plus dur : `q1 = -q0` exactement (deux quaternions opposés, aucune rotation entre eux). Le résultat est nul dans les deux versions, mais seulement parce que le garde-fou `s < 10⁻¹²` donne alors `ω = 0` (sans lui, on aurait `0/0`). Dès que l'écart n'est plus exactement nul, la version sans forçage retombe dans l'absurde du cas précédent.
-
-Entrée :
-
-```
-0 0 0 1   0 0 0 -1   0.01
-```
-
-Sortie :
-
-```
-avec forcage : 0.0000 0.0000 0.0000  (rad/s)
-sans forcage : 0.0000 0.0000 0.0000  (rad/s)
-```

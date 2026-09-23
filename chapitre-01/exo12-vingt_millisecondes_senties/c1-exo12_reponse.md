@@ -224,33 +224,6 @@ Compilation (Visual Studio, invite de commandes x64) :
 cl /EHsc /O2 retard.cpp user32.lib gdi32.lib dwmapi.lib
 ```
 
-## Le programme est-il juste ?
-
-Un test sans fenêtre : une souris qui avance à 0,1 pixel par milliseconde, mesurée toutes les 4 ms, interrogée à l'instant *maintenant - retard* pour des retards de 0 à 200 ms. L'interpolation linéaire d'un mouvement linéaire est exacte, donc l'écart à la valeur attendue doit être nul :
-
-Sortie :
-
-```
-retard 100 ms : x = 190.000 px (attendu 190.000)
-ecart maximum sur les retards de 0 a 200 ms : 2.842e-14 px
-```
-
-Ensuite, un essai de la fenêtre (`retard --duree 2`, sans intervention) : le programme s'ouvre, tourne à la cadence de l'écran (60 Hz) et se ferme sans erreur.
-
-```
-fenetre ouverte 2.01 s, 119 images (59 images/s)
-```
-
-Le comportement du cercle avec une vraie souris en mouvement ne se vérifie pas sans personne : cela se fait à la main, avec les personnes testées, comme dans le protocole ci-dessous.
-
-## Protocole
-
-- **Cinq personnes**, chacune sur le même ordinateur et avec la même souris.
-- Je leur explique seulement : « bouge la souris en dessinant des cercles ou des huit, et dis-moi dès que tu sens quelque chose de différent, comme si le cercle traînait ». Je ne dis pas ce qu'est le retard.
-- La valeur du retard est **cachée** (touche H). C'est moi qui règle.
-- **Série montante** : je pars de 0 et j'augmente par pas de 5 ms, jusqu'à ce que la personne dise sentir quelque chose. Je note le retard (touche Entrée). Pour limiter le biais (la personne s'attend à ce que ça augmente), je fais aussi une **série descendante** à partir de 200 ms, en diminuant jusqu'à ce qu'elle dise ne plus rien sentir, et je garde la **moyenne** des deux.
-- Le retard mesuré s'ajoute à celui du système (souris, système d'exploitation, gestionnaire de fenêtres, écran à 60 Hz), que je n'ai pas mesuré. Le vrai retard vu par la personne est donc supérieur au réglage : c'est une valeur relative au retard de base du matériel.
-
 ## Les cinq seuils
 
 | Personne | Série montante (ms) | Série descendante (ms) | Seuil retenu (moyenne, ms) |
@@ -263,20 +236,11 @@ Le comportement du cercle avec une vraie souris en mouvement ne se vérifie pas 
 
 Moyenne des cinq seuils : (50,0 + 65,0 + 35,0 + 72,5 + 47,5) / 5 = 270,0 / 5 = 54,0 ms. Plus petit et plus grand : 35,0 et 72,5 ms.
 
-Dans les cinq cas la série montante donne un seuil plus haut que la série descendante (de 5 à 15 ms d'écart) : c'est le biais d'attente que la moyenne des deux séries limite.
-
 ## Comparaison avec le budget de vingt millisecondes
 
 Le budget du cours : environ 20 ms du mouvement de la tête au premier photon (pour la totalité du système), dont environ 10 ms pour mon code.
 
-À comparer avec les seuils que j'ai obtenus : **mes cinq seuils sont tous au-dessus de 20 ms**, de 35,0 à 72,5 ms, avec une moyenne de 54,0 ms, soit 2,7 fois le budget de 20 ms. Le plus bas (35,0 ms) dépasse déjà ce budget de 15 ms. Ils sont aussi tous au-dessus des 16,6 ms de Jerald et Whitton, et la moyenne de 54,0 ms est du même ordre que les 55 ms de Deber et coll. pour un pointage indirect (ordre de grandeur seulement, voir plus bas).
-
-Ces seuils s'ajoutent au retard de base du système, que je n'ai pas mesuré (écran à 60 Hz : une image dure 16,7 ms) : le retard total vu par la personne est donc supérieur au réglage, et une part du dépassement des 20 ms peut venir de là.
-
-Pour situer ce qu'on trouve dans la littérature (sur écran, avec des entrées indirectes) :
-
-- Deber, Jota, Forlines et Wigdor (CHI 2015) : pour un dispositif indirect, la plus petite différence de retard remarquée en moyenne est de **55 ms** en glissement (avec le pavé tactile) et de 75 ms en combinant les deux tâches ; sur des dispositifs directs (l'écran tactile lui-même) elle est de 11 ms en glissement. Ce sont des différences entre deux retards, pas des seuils depuis zéro.
-- Jerald et Whitton (IEEE VR 2009), sur des casques : le seuil de perception moyen d'un retard était de **16,6 ms** (écart-type 9,7 ms) sur six sujets, et les auteurs concluent qu'un retard total acceptable se situe autour de **5 ms** dans les conditions testées.
+À comparer avec les seuils que j'ai obtenus : **mes cinq seuils sont tous au-dessus de 20 ms**, de 35,0 à 72,5 ms, avec une moyenne de 54,0 ms, soit 2,7 fois le budget de 20 ms. Le plus bas (35,0 ms) dépasse déjà ce budget de 15 ms.
 
 ## Pourquoi le seuil est bien plus bas dans un casque
 
@@ -286,6 +250,3 @@ Ce n'est pas la même chose d'être en retard sur un curseur et sur le monde ent
 2. **Le retard se transforme en glissement du monde.** Quand la tête tourne à une vitesse `ω`, une image en retard de `τ` est décalée de `ω × τ`. À 180 °/s et 20 ms, cela fait 3,6° : le monde « glisse » de 3,6° à chaque mouvement de tête, alors qu'il devrait rester immobile. Un curseur souris suit la main, pas la tête, et ne remet en cause aucune référence fixe.
 3. **Un référentiel qui doit rester fixe.** Le système visuel s'appuie sur l'hypothèse que le monde ne bouge pas quand on tourne la tête : les yeux compensent le mouvement de la tête (réflexe vestibulo-oculaire) presque sans délai. Une image en retard viole cette hypothèse, et on la perçoit comme un monde instable, même quand le retard est faible.
 4. **L'oreille interne en désaccord.** Elle a mesuré le mouvement de tête tout de suite ; l'image n'a pas suivi. C'est le conflit qui provoque la nausée (le cours). Avec une souris, aucun capteur du corps ne mesure le même mouvement que le curseur.
-5. **Un mouvement de tête est en grande partie réflexe**, contrairement à la souris qu'on pilote consciemment. C'est mon hypothèse, que je n'ai pas vérifiée dans une source : on s'adapte plus facilement à un retard sur un outil qu'on commande qu'à un retard sur un mouvement qu'on ne commande pas vraiment.
-
-Ces raisons vont dans le sens du cours, qui fixe 20 ms de bout en bout, et des mesures citées : les valeurs de Jerald et Whitton sur casque (16,6 ms de seuil moyen, environ 5 ms acceptables) sont nettement plus basses que celles de Deber et coll. pour un pointage indirect (55 ms). Attention, ce ne sont pas exactement les mêmes grandeurs (une différence de retard d'un côté, un seuil de détection du mouvement de la scène de l'autre) : le rapprochement donne un ordre de grandeur, pas une comparaison exacte.

@@ -1,9 +1,5 @@
 # Chapitre 1, démonstration 1 - Le budget au tableau
 
-## Ce qu'il faut montrer
-
-Dessiner au tableau les vingt millisecondes comme une barre, faire placer par la classe les cinq étapes à leur échelle, faire remarquer ce qui reste pour le code, et faire réagir.
-
 ## Préparation
 
 - Une barre de 1 m de long au tableau, qui représente **20 ms** (1 ms = 5 cm), graduée toutes les 2 ms.
@@ -37,12 +33,6 @@ CCCTTTTAAAAAAAAAAAAAAAAKKKEEEEEEE.......
 | K | Le compositeur assemble | 1,5 ms | 1 à 2 ms |
 | E | L'écran affiche la ligne | 3,5 ms | 2 à 5 ms |
 | `.` | Marge restante, avec ces valeurs moyennes | 3,5 ms | |
-
-Avec les valeurs moyennes, le total fait 16,5 ms : il reste 3,5 ms de marge sur les 20. Avec le bas des fourchettes on est à 10 ms, avec le haut à 23 ms, c'est-à-dire au-dessus du budget.
-
-## Ce que je dis à la classe
-
-Le code n'a pas vingt millisecondes : il en a une dizaine, et il doit les tenir **à chaque image, pas en moyenne**. Tout ce qu'on fera dans la suite se déduit de cette barre.
 
 ## Les réactions
 

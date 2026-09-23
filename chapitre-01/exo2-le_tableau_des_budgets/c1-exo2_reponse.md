@@ -1,7 +1,5 @@
 # Chapitre 1, exercice 2 - Le tableau des budgets
 
-Le tableau du chapitre a cinq étapes. Pour chacune j'ai cherché une valeur **mesurée**, avec sa source. Quand je n'ai rien trouvé de solide, je le dis dans la colonne de droite : je préfère un « introuvable » à une valeur inventée.
-
 ## Le tableau
 
 | Étape                               | Valeur du chapitre | Ce que j'ai trouvé                                                                                                                                                                                                                                                                                                                                                           | Source   | Verdict                                                                                                                                             |
@@ -12,17 +10,9 @@ Le tableau du chapitre a cinq étapes. Pour chacune j'ai cherché une valeur **m
 | Le compositeur assemble              | 1 à 2 ms          | Le tableau de synthèse [4] donne 1 à 2 ms et cite l'article d'Antonov [3]. Dans ce que j'ai pu lire de cet article, aucun coût mesuré du compositeur n'apparaît : il demande une préemption de « 2 ms ou moins » et que la correction s'exécute en « moins de 11 ms ».                                                                                             | [3], [4] | **Introuvable** comme mesure (le 2 ms cité est une exigence, pas un coût)                                                                   |
 | L'écran affiche la ligne            | 2 à 5 ms          | Le délai d'affichage est estimé à**≈ 10 à 15 ms** aujourd'hui, appelé à descendre vers**5 ms**. Sur les casques mesurés, l'écran n'est éclairé que **2 ms** à la fin de chaque image de 11,1 ms (Rift), et 0,33 ms sur un Valve Index.                                                                                                                | [1], [2] | Partiel : 2 à 5 ms ressemble à l'objectif de 5 ms plus qu'à la mesure de 10 à 15 ms. Le 2 ms du Rift est une durée d'éclairage, pas un délai |
 
-Les mots entre guillemets viennent des sources (traduits de l'anglais).
-
 ## Les sources
 
 1. Elbamby M. S., Perfecto C., Bennis M., Doppler K., *Towards Low-Latency and Ultra-Reliable Virtual Reality*, 2018. arXiv:1801.07587. https://arxiv.org/abs/1801.07587 (lu : délai capteur < 1 ms, délai d'affichage ≈ 10 à 15 ms attendu vers 5 ms, « 14 ms pour le calcul et la communication »).
 2. Warburton M., Mon-Williams M., Mushtaq F., Morehead J. R., *Measuring motion-to-photon latency for sensorimotor experiments with virtual reality systems*, Behavior Research Methods, 2022 (DOI 10.3758/s13428-022-01983-5). J'ai lu la préversion : https://www.biorxiv.org/content/10.1101/2022.06.24.497509 (lu : persistance de 0,33 ms pour le Valve Index à 2 ms pour le Rift ; sur un Rift, écran noir 9,1 ms puis éclairé 2 ms par image de 11,1 ms).
 3. Antonov M., *Asynchronous Timewarp Examined*, blog développeurs Oculus, 2 mars 2015. https://developers.meta.com/horizon/blog/asynchronous-timewarp-examined/ (lu : « à 90 Hz, l'intervalle entre images est d'environ 11 ms », préemption « d'environ 2 ms ou moins », un appel de dessin complexe « peut facilement prendre 10 ms »).
 4. VR & AR Wiki, *Motion-to-photon latency*. https://vrarwiki.com/wiki/Motion-to-photon_latency, et la page *Oculus Rift* https://vrarwiki.com/wiki/Oculus_Rift (rotation : 1000 Hz). Source secondaire : un wiki, qui renvoie lui-même à d'autres pages.
-
-## Ce que je n'ai pas pu vérifier
-
-- L'article d'Abrash, « Latency - the sine qua non of AR and VR » (blog de Valve), n'a pas pu être ouvert (erreur de connexion sécurisée). Je ne m'appuie donc sur aucun chiffre qui en vienne.
-- L'article « Building a Sensor for Low Latency VR » (blog Meta Quest) : la connexion a été refusée. Idem.
-- L'article de Warburton et coll. : la version publiée demande une connexion, j'ai lu la préversion. Les chiffres cités peuvent différer un peu de la version finale.

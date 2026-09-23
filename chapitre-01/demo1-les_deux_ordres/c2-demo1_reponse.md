@@ -1,9 +1,5 @@
 # Chapitre 2, démonstration 1 - Les deux ordres
 
-## Ce qu'il faut montrer
-
-Au tableau, avec un objet réel dans la main, ce que donnent « je tourne puis j'avance » et « j'avance puis je tourne » quand on part du même point. Puis les deux résultats du programme (celui de l'exercice 3).
-
 ## Préparation
 
 - Un stylo (ou une règle) : l'objet. Son centre est l'origine de l'entité ; son bout est le point `p` que je suis, à 1 m du centre pour l'échelle du tableau (1 carreau = 1 m).
@@ -43,7 +39,3 @@ ecart                        2.8284
 - l'écart entre les deux est de 2,83 m sur un déplacement de 2 m.
 
 Le programme et le tableau donnent les mêmes points : (2, 0, -1) et (0, 0, -3).
-
-## Ce que je fais retenir
-
-Quand on se trompe d'ordre, rien ne plante et rien n'affiche d'erreur : les objets tournent autour du mauvais point. C'est pour cela que l'ordre est écrit une fois dans une fonction (`Appliquer`) : on tourne d'abord, on déplace ensuite.

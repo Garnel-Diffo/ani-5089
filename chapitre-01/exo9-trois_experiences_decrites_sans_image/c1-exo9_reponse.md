@@ -1,6 +1,6 @@
 # Chapitre 1, exercice 9 - Trois expériences décrites sans image
 
-Trois applications de réalité virtuelle existantes, de genres différents : un jeu de rythme (*Beat Saber*), un jeu d'aventure et de tir (*Half-Life: Alyx*), un simulateur de vol spatial (*Elite Dangerous*). Pour chacune, dix lignes sur ce qu'elle demande à l'utilisateur de faire de son corps. Je les décris de mémoire, d'après ce que je sais de leur fonctionnement : ce sont des descriptions, pas des mesures.
+Trois applications de réalité virtuelle existantes, de genres différents : un jeu de rythme (*Beat Saber*), un jeu d'aventure et de tir (*Half-Life: Alyx*), un simulateur de vol spatial (*Elite Dangerous*). Pour chacune, dix lignes sur ce qu'elle demande à l'utilisateur de faire de son corps.
 
 ## 1. *Beat Saber* (jeu de rythme)
 
@@ -54,5 +54,3 @@ Le cours donne le mécanisme : le malaise vient du désaccord entre ce que l'œi
 - ***Beat Saber*, le moins risqué.** Le joueur ne se déplace pas dans le monde et la piste ne bouge pas autour de lui. Tout mouvement visible de la tête vient de sa propre tête, donc l'œil et l'oreille interne sont d'accord. Les mouvements des bras sont visibles et ressentis, et une tête qui bouge vite (esquive) reste sous son contrôle. C'est aussi le plus court : des chansons de quelques minutes.
 - ***Half-Life: Alyx*, au milieu, et cela dépend du mode.** À l'échelle de la pièce et en téléportation, les déplacements sont des sauts sans mouvement continu : c'est proche de *Beat Saber*. En déplacement continu au joystick, le monde défile alors que le corps est immobile, ce qui est le cas typique du conflit. Le jeu laisse le choix, ce qui est précisément un moyen de gérer la sensibilité de chacun. Je le place au milieu parce que, réglé « comme on veut », il peut se rapprocher d'un extrême ou de l'autre.
 - ***Elite Dangerous*, le plus risqué.** On est assis et immobile, mais tout le monde autour de soi tourne, roule et accélère sans que le corps ressente quoi que ce soit : les rotations et les accélérations du vaisseau sont purement visuelles. C'est le conflit le plus constant des trois, et il concerne tout le champ de vision. Le cockpit fixe autour du joueur atténue le problème, mais il ne le supprime pas. Les longues sessions aggravent souvent le problème.
-
-Deux réserves. Ce classement est une analyse fondée sur le mécanisme du cours, sans mesure : la sensibilité varie beaucoup d'une personne à l'autre (voir la démonstration 2), et un joueur habitué peut trouver *Elite Dangerous* plus confortable que le déplacement continu d'*Alyx*. Et pour *Half-Life: Alyx* ce sont les réglages qui décident : en téléportation il pourrait être aussi confortable que *Beat Saber* pour certains joueurs, pas pour d'autres.
