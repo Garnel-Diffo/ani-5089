@@ -1,0 +1,7 @@
+Ce que la trace apprend :
+
+Le signal est SIGSEGV, code 1 (SEGV_MAPERR), a l'adresse fautive 0x4, et debuggerd l'annote lui-meme "Cause: null pointer dereference" : une lecture a travers un pointeur nul, decalee de 4 octets (le champ y de Position, juste apres x). Comme le build Debug garde les symboles, la pile d'appel nomme directement les fonctions en cause : HauteurDeLEntite(int)+32, appelee depuis android_main+96, elle-meme appelee depuis android_app_entry+264 puis les frames de demarrage du thread natif (bionic libc). La trace donne aussi le fingerprint exact de l'appareil (Redmi/kunzite, Android 15), le pid et le tid du thread qui a plante, et l'horodatage. Cela suffit a localiser la ligne fautive sans avoir besoin de relire tout le fichier source.
+
+Ce que la trace n'apprend pas :
+
+Elle ne dit pas pourquoi HauteurDeLEntite a ete appelee avec un identifiant absent de g_scene : rien dans le crash ne montre la valeur 3 ni l'intention du code appelant. Il faut lire plantage.cpp pour comprendre que c'est le troisieme appel, volontairement fautif. La trace ne dit pas non plus si d'autres identifiants absents provoqueraient le meme plantage ailleurs dans un programme plus grand, ni comment corriger le bogue : elle localise le symptome (l'acces memoire invalide), pas la decision de conception qui a laisse TrouverPosition renvoyer nullptr sans que l'appelant le verifie.

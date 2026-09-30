@@ -1,0 +1,30 @@
+--------- beginning of crash
+09-30 23:03:04.310 10200 11540 F libc    : Fatal signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x4 in tid 11540 (ni5089.plantage), pid 10200 (ni5089.plantage)
+09-30 23:03:05.520 11551 11551 F DEBUG   : *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+09-30 23:03:05.520 11551 11551 F DEBUG   : Build fingerprint: 'Redmi/kunzite/kunzite:15/AQ3A.250226.002/OS2.0.206.0.VPQMIXM:user/release-keys'
+09-30 23:03:05.520 11551 11551 F DEBUG   : Revision: '0'
+09-30 23:03:05.520 11551 11551 F DEBUG   : ABI: 'arm64'
+09-30 23:03:05.520 11551 11551 F DEBUG   : Timestamp: 2026-09-30 23:03:04.702124375+0100
+09-30 23:03:05.520 11551 11551 F DEBUG   : Process uptime: 28s
+09-30 23:03:05.520 11551 11551 F DEBUG   : Cmdline: com.ani5089.plantage
+09-30 23:03:05.520 11551 11551 F DEBUG   : pid: 10200, tid: 11540, name: ni5089.plantage  >>> com.ani5089.plantage <<<
+09-30 23:03:05.520 11551 11551 F DEBUG   : uid: 10429
+09-30 23:03:05.520 11551 11551 F DEBUG   : tagged_addr_ctrl: 0000000000000001 (PR_TAGGED_ADDR_ENABLE)
+09-30 23:03:05.520 11551 11551 F DEBUG   : signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x0000000000000004
+09-30 23:03:05.520 11551 11551 F DEBUG   : Cause: null pointer dereference
+09-30 23:03:05.520 11551 11551 F DEBUG   :     x0  0000000000000000  x1  0000007c54bddec8  x2  0000007c54bddf28  x3  0000000000000003
+09-30 23:03:05.520 11551 11551 F DEBUG   :     x4  0000007c54bdddd0  x5  000000001e52c38a  x6  2f2f2f2f2f2f2d2f  x7  7f7f7f7f7f7f7f7f
+09-30 23:03:05.520 11551 11551 F DEBUG   :     x8  0000000000000000  x9  0000007c54beded8  x10 0000007c54bedeb8  x11 fffffffffffffffd
+09-30 23:03:05.520 11551 11551 F DEBUG   :     x12 0000007c54bddf60  x13 0000000000000021  x14 0000007c54bdf1d8  x15 000025f986369b3d
+09-30 23:03:05.520 11551 11551 F DEBUG   :     x16 0000007c54becde0  x17 0000007c54bea084  x18 0000007c5217c000  x19 0000007c54bdf6f0
+09-30 23:03:05.520 11551 11551 F DEBUG   :     x20 0000007c54bdf6f0  x21 0000007c54bdf6f0  x22 00000000000027d8  x23 00000000000027d8
+09-30 23:03:05.520 11551 11551 F DEBUG   :     x24 0000007c54bdf6f0  x25 0000007c54bdf6f0  x26 0000007c54bdfa30  x27 b400007d3ac95710
+09-30 23:03:05.520 11551 11551 F DEBUG   :     x28 0000007c54ae7000  x29 0000007c54bdf620
+09-30 23:03:05.520 11551 11551 F DEBUG   :     lr  0000007c54bea138  sp  0000007c54bdf610  pc  0000007c54bea140  pst 0000000060001000
+09-30 23:03:05.520 11551 11551 F DEBUG   : 5 total frames
+09-30 23:03:05.521 11551 11551 F DEBUG   : backtrace:
+09-30 23:03:05.521 11551 11551 F DEBUG   :       #00 pc 0000000000003140  /data/app/~~6ANjmchmTUlBw9IwxLNJzA==/com.ani5089.plantage-8WamA7ZT9ErV0RjCEqRNiQ==/lib/arm64/libPlantage.so (HauteurDeLEntite(int)+32)
+09-30 23:03:05.521 11551 11551 F DEBUG   :       #01 pc 00000000000031b0  /data/app/~~6ANjmchmTUlBw9IwxLNJzA==/com.ani5089.plantage-8WamA7ZT9ErV0RjCEqRNiQ==/lib/arm64/libPlantage.so (android_main+96)
+09-30 23:03:05.521 11551 11551 F DEBUG   :       #02 pc 000000000000451c  /data/app/~~6ANjmchmTUlBw9IwxLNJzA==/com.ani5089.plantage-8WamA7ZT9ErV0RjCEqRNiQ==/lib/arm64/libPlantage.so (android_app_entry+264)
+09-30 23:03:05.521 11551 11551 F DEBUG   :       #03 pc 0000000000072294  /apex/com.android.runtime/lib64/bionic/libc.so (__pthread_start(void*)+196) (BuildId: 0b69d0b1b7124e6d65d87c6a9d298ebe)
+09-30 23:03:05.521 11551 11551 F DEBUG   :       #04 pc 00000000000643b0  /apex/com.android.runtime/lib64/bionic/libc.so (__start_thread+68) (BuildId: 0b69d0b1b7124e6d65d87c6a9d298ebe)
