@@ -1,0 +1,6 @@
+souris : 898
+redimensionnement : 576
+clavier : 266
+molette : 122
+pointeur : 59
+focus : 13
