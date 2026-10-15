@@ -1,0 +1,7 @@
+bon : 0 1.25 -2
+mauvais : 0 3.125 -0.2
+
+Mur du fond : position voulue (0 ; 1.25 ; -2), echelle (4 ; 2.5 ; 0.1).
+bon     = Translate(position) * Scale(echelle) : le centre reste a la position voulue.
+mauvais = Scale(echelle) * Translate(position) : la position est multipliee par l'echelle, composante par composante, soit (0 x 4 ; 1.25 x 2.5 ; -2 x 0.1) = (0 ; 3.125 ; -0.2).
+Ces deux triplets sont aussi ceux que NkMat4f::TransformPoint renvoie dans le programme pour le point {0,0,0}.

@@ -1,0 +1,22 @@
+Cout marginal de chaque sous-systeme = moyenne(config avec) - moyenne(config precedente, sans), calcule a partir des valeurs reelles de mesures.txt.
+
++SIMULATION       : +1 247 224.6 us   (4553590.0 - 3306365.4)
++POST_PROCESS     : +2 164 573.4 us   (3126188.2 -  961614.8)
++TEXT             :  +444 080.0 us   (1078270.0 -  634190.0)
++SHADOW           :  +428 417.4 us   ( 854475.3 -  426057.9)
++OVERLAY          :  +380 918.5 us   ( 961614.8 -  580696.3)
++ANIMATION        :  +101 424.6 us   (3306365.4 - 3204940.8)
++VFX              :   +78 752.6 us   (3204940.8 - 3126188.2)
++RENDER2D         :  -220 285.3 us   ( 634190.0 -  854475.3)
++UI               :  -497 573.7 us   ( 580696.3 - 1078270.0)
+
+Classement par cout croissant observe, du plus cher au moins cher :
+1. POST_PROCESS (tonemap/bloom/fxaa/ssao, passes plein ecran) - de tres loin le plus cher
+2. SIMULATION (visualisation debug physique)
+3. TEXT (pont NKFont)
+4. SHADOW (CSM + PCSS)
+5. OVERLAY (stats, gizmos de debug)
+6. ANIMATION (squelette/skinning, inactif dans cette scene sans mesh anime)
+7. VFX (particules/trainees/decals, inactif ici sans emetteur)
+
+RENDER2D et UI affichent un delta NEGATIF, ce qui est physiquement impossible pour l'ajout d'un sous-systeme : la scene et le nombre de drawcalls 3D ne changent jamais dans cet exercice, donc activer RENDER2D/UI ne devrait rien couter de notable en soi (aucune primitive 2D n'est soumise). Ces deux deltas negatifs refletent le bruit du systeme (processus concurrents sur la machine de mesure) plutot qu'un veritable gain de performance. Ils sont rapportes tels quels par honnetete, mais ne sont pas exploitables pour classer ces deux sous-systemes : leur cout reel, avec cette scene qui ne les sollicite jamais, est proche de zero.

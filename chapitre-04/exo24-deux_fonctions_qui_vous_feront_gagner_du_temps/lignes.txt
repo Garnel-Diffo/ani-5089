@@ -1,0 +1,7 @@
+Before: 46
+
+After: 45
+
+Counting: comptage reel (wc -l sur les fichiers livres), fait de la meme facon avant et apres. J'ai compte le bloc qui soumet la geometrie de la salle (sol, plafond, quatre murs), tel qu'ecrit dans salle.cpp de l'exercice 8 avant la reecriture : 46 lignes, chaque Translate * Scale etant ecrit a la main. Apres la reecriture avec PoserAuSol et PoserSurTable, le meme bloc dans poser.cpp fait 34 lignes, auxquelles j'ajoute les 11 lignes de definition des deux fonctions (commentaires compris), soit 45 au total : une seule ligne de moins, parce que la salle ne contient que 6 objets et que le cout fixe des deux fonctions absorbe presque tout le gain. Je n'ai pas compte les lignes de mise en place (fenetre, device, renderer, camera, lumiere, boucle), identiques avant et apres.
+
+Le vrai interet n'est pas visible sur ce seul fichier : des que la scene grandit (table, porte, fenetres), chaque objet pose au sol ou sur une surface gagne une ligne (un appel) au lieu de deux (un Translate et un Scale a composer et verifier a la main). Le cout fixe est paye une seule fois.

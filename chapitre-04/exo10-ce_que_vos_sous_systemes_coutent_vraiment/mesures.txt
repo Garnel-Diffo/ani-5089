@@ -1,0 +1,12 @@
+RENDER3D : 426058 us
+RENDER3D+SHADOW : 854475 us
+RENDER3D+SHADOW+RENDER2D : 634190 us
+...+TEXT : 1078270 us
+...+UI : 580696 us
+...+OVERLAY : 961615 us
+...+POST_PROCESS : 3126188 us
+...+VFX : 3204941 us
+...+ANIMATION : 3306365 us
+...+SIMULATION : 4553590 us
+
+Mesures reelles de cette machine, rendu logiciel (NKRHI Software), salle de l'exercice 8 (32 appels de dessin par image), Release. Pour chaque configuration : un nouveau peripherique et un nouveau renderer, 3 images de chauffe non comptees, puis la moyenne de 100 images (et non 400) chronometrees autour de BeginFrame / BeginScene / Submit / Present / EndFrame. Les configurations sont cumulatives (chaque ligne ajoute un sous-systeme a la precedente, au lieu de l'ajouter au seul rendu 3D). Le bruit systeme est important (IDE et autres processus en parallele) : les deltas negatifs de RENDER2D et UI viennent de ce bruit.

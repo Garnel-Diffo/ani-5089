@@ -1,0 +1,16 @@
+Lines:
+    NkMeshHandle cube = renderer->GetMeshSystem()->GetCube();
+    NkLightDesc sun;
+    sun.type       = NkLightType::NK_DIRECTIONAL;
+    sun.direction  = {-0.4f, -0.6f, -0.6f};
+    sun.color      = {1.f, 1.f, 1.f};
+    sun.intensity  = 2.2f;
+    sun.castShadow = false;
+    ctx.lights.PushBack(sun);
+        NkDrawCall3D dc;
+        dc.mesh      = cube;
+        dc.transform = NkMat4f::Translate({0.f, 0.f, -2.f});
+        dc.tint      = {1.f, 1.f, 1.f};
+        renderer->GetRender3D()->Submit(dc);
+
+Cause: le cube s'est affiche du premier coup, donc ce qui aurait pu l'empecher est une cause de la liste que mon code contient deja : la boite englobante (le champ aabb de NkDrawCall3D) n'est jamais renseignee dans ce cube.cpp. Ce que cela produit, observe dans le journal reel de ce programme : le moteur ecrit "[NkRender3D] AABB NON RENSEIGNEE sur une soumission (mesh id=1) : l'etendue est restee inversee. Elle est traitee comme VISIBLE" et dessine quand meme le cube. Dans ce moteur, une boite non renseignee ne fait donc pas disparaitre l'objet, elle empeche seulement le moteur d'ecarter ce qui est hors champ. Je n'ai en revanche pas provoque volontairement une autre cause de la liste (sans lumiere, camera dans le cube, echelle zero) : je ne decris donc pas ce qu'elles produiraient, faute de l'avoir observe.
