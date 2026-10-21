@@ -1,0 +1,6 @@
+gauche 1 : G 0.0800 D 0.0000
+devant 1 : G 0.0567 D 0.0567
+droite 1 : G 0.0000 D 0.0800
+gauche 0 : G 0.1577 D 0.1577
+devant 0 : G 0.1573 D 0.1573
+droite 0 : G 0.1575 D 0.1575
