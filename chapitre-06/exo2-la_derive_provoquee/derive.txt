@@ -1,0 +1,13 @@
+t = 5.0 s, frames = 106, raw = 3, yaw = 9.3 deg
+t = 6.0 s, frames = 128, raw = 3, yaw = 16.8 deg
+t = 7.0 s, frames = 149, raw = 3, yaw = 24.1 deg
+t = 8.0 s, frames = 170, raw = 3, yaw = 31.3 deg
+t = 9.0 s, frames = 190, raw = 3, yaw = 38.2 deg
+t = 10.0 s, frames = 210, raw = 3, yaw = 45.0 deg
+t = 11.0 s, frames = 230, raw = 3, yaw = 51.9 deg
+t = 12.0 s, frames = 250, raw = 3, yaw = 58.8 deg
+t = 13.0 s, frames = 270, raw = 3, yaw = 65.7 deg
+t = 14.0 s, frames = 289, raw = 3, yaw = 72.2 deg
+t = 15.0 s, frames = 308, raw = 3, yaw = 78.7 deg
+t = 16.1 s, frames = 328, raw = 3, yaw = 85.6 deg
+t = 17.0 s, frames = 346, raw = 3, yaw = 91.8 deg

@@ -1,0 +1,13 @@
+t = 5.0 s, read = 5.5, emptied = 12.8, not emptied = 241.1
+t = 6.0 s, read = 10.3, emptied = 12.8, not emptied = 510.6
+t = 7.0 s, read = 14.9, emptied = 12.8, not emptied = 767.3
+t = 8.0 s, read = 19.7, emptied = 12.8, not emptied = 1036.8
+t = 9.0 s, read = 24.3, emptied = 12.8, not emptied = 1293.5
+t = 10.0 s, read = 29.1, emptied = 12.8, not emptied = 1563.0
+t = 11.0 s, read = 33.7, emptied = 12.8, not emptied = 1819.7
+t = 12.0 s, read = 38.5, emptied = 12.8, not emptied = 2089.2
+t = 13.0 s, read = 43.1, emptied = 12.8, not emptied = 2345.9
+t = 14.0 s, read = 47.9, emptied = 12.8, not emptied = 2615.4
+t = 15.0 s, read = 52.7, emptied = 12.8, not emptied = 2885.0
+t = 16.0 s, read = 57.3, emptied = 12.8, not emptied = 3141.6
+t = 17.0 s, read = 61.9, emptied = 12.8, not emptied = 3398.3

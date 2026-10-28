@@ -1,0 +1,2 @@
+two eyes : 79673 pixels out of 460800, max gap 99
+view forgotten : 0 pixels out of 460800, max gap 0

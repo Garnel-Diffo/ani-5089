@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# =============================================================================
+#  MaSalle -- le projet de l'etudiant, lie au KIT R3D (NKRHI, NKRenderer, NKAudio...).
+#
+#  Le kit est dans Kits/R3D : ses en-tetes, ses bibliotheques deja
+#  construites (Debug et Release), les nuanceurs de NKRenderer. Aucun clone du
+#  moteur, aucun SDK a installer.
+# =============================================================================
+import sys
+
+from Jenga import *
+
+with workspace("MaSalleWks", location="."):
+    configurations(["Debug", "Release"])
+
+    # Le kit : il definit user3d(), que chaque projet appelle.
+    useconfig("Kits/R3D/R3D.jenga")
+
+    with project("MaSalle"):
+        consoleapp()
+        language("C++")
+        cppdialect("C++17")
+        location(".")
+        files(["src/**.cpp"])
+
+        user3d()        # en-tetes, dossiers de bibliotheques, archives, bibliotheques du systeme
+
+        # Release : sans cette ligne, le compilateur ne recoit AUCUNE option d'optimisation et Release n'est pas
+        # plus rapide que Debug (exercice 7). "Speed" donne -O2 (Builder.py de Jenga) ; NDEBUG marque la
+        # configuration Release pour cout.cpp.
+        with filter("config:Release"):
+            optimize("Speed")
+            defines(["NDEBUG"])
+
+        # Un executable qui tourne SEUL : la bibliotheque C++ du compilateur (libc++,
+        # libunwind) est liee dedans. Sans cela, le programme reclame libc++.dll et
+        # libunwind.dll au lancement, et ne demarre que sur la machine du compilateur.
+        with filter("system:Windows"):
+            ldflags(["-static"])
+
+        objdir("%{wks.location}/Build/Obj/%{cfg.buildcfg}-%{cfg.system}/%{prj.name}")
+        targetdir("%{wks.location}/Build/Bin/%{cfg.buildcfg}-%{cfg.system}/%{prj.name}")
+
+        # NKRenderer lit ses nuanceurs dans Resources/NKRenderer/Shaders, RELATIF AU
+        # DOSSIER COURANT. On les copie depuis le kit : dans ce dossier (lancez le
+        # programme d'ici) et a cote de l'executable. sys.executable est le Python qui
+        # fait tourner Jenga : il existe forcement.
+        _COPIE = ('"' + sys.executable + '" -c "import shutil, sys; '
+                  'shutil.copytree(sys.argv[1], sys.argv[2], dirs_exist_ok=True)" '
+                  '"%{wks.location}/Kits/R3D/Resources/NKRenderer/Shaders" ')
+        postbuild([
+            _COPIE + '"%{wks.location}/Resources/NKRenderer/Shaders"',
+            _COPIE + '"%{wks.location}/Build/Bin/%{cfg.buildcfg}-%{cfg.system}/%{prj.name}'
+                     '/Resources/NKRenderer/Shaders"',
+        ])

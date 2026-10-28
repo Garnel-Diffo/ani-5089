@@ -1,0 +1,10 @@
+symmetric, row 0 : 5.960e-08 0.000e+00 0.000e+00 0.000e+00
+symmetric, row 1 : 0.000e+00 0.000e+00 0.000e+00 0.000e+00
+symmetric, row 2 : 0.000e+00 0.000e+00 0.000e+00 0.000e+00
+symmetric, row 3 : 0.000e+00 0.000e+00 0.000e+00 0.000e+00
+quest, row 0 : 0.000e+00 0.000e+00 0.000e+00 0.000e+00
+quest, row 1 : 0.000e+00 0.000e+00 1.043e-07 0.000e+00
+quest, row 2 : 0.000e+00 0.000e+00 0.000e+00 0.000e+00
+quest, row 3 : 0.000e+00 0.000e+00 0.000e+00 0.000e+00
+symmetric : largest gap 5.960e-08
+quest : largest gap 1.043e-07

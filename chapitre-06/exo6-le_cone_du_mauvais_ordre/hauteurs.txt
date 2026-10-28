@@ -1,0 +1,10 @@
+yaw*pitch, yaw 0 : height 30.0 deg
+yaw*pitch, yaw 45 : height 30.0 deg
+yaw*pitch, yaw 90 : height 30.0 deg
+yaw*pitch, yaw 135 : height 30.0 deg
+yaw*pitch, yaw 180 : height 30.0 deg
+pitch*yaw, yaw 0 : height 30.0 deg
+pitch*yaw, yaw 45 : height 20.7 deg
+pitch*yaw, yaw 90 : height 0.0 deg
+pitch*yaw, yaw 135 : height -20.7 deg
+pitch*yaw, yaw 180 : height -30.0 deg
