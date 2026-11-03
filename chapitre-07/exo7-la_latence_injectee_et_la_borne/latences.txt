@@ -1,0 +1,7 @@
+latency 0 ms : with 0.1510 deg (max 0.5318), without 1.3846 deg (max 4.9060)
+latency 10 ms : with 0.4518 deg (max 1.5858), without 2.7692 deg (max 9.7887)
+latency 20 ms : with 0.9025 deg (max 3.1463), without 4.1538 deg (max 14.6597)
+latency 40 ms : with 1.5006 deg (max 5.1916), without 5.5385 deg (max 19.4610)
+latency 80 ms : with 4.1518 deg (max 13.9348), without 9.6923 deg (max 33.5305)
+no bound : sample at 1.194 s, horizon 889 ms, predicted -4.5 deg, true 90.0 deg
+with bound : sample at 1.194 s, horizon 889 ms, predicted 78.2 deg, true 90.0 deg

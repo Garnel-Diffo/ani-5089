@@ -1,0 +1,4 @@
+fast (90 deg in 400 ms) : velocity 0.2146 deg (max 0.5247), acceleration 0.1107 deg (max 0.2696)
+slow (45 deg in 1500 ms) : velocity 0.0106 deg (max 0.0190), acceleration 0.0053 deg (max 0.0095)
+half-turn (180 deg in 250 ms) : velocity 0.8773 deg (max 2.6931), acceleration 0.4546 deg (max 1.4082)
+stop (50 deg in 500 ms) : velocity 0.0283 deg (max 1.3889), acceleration 0.0425 deg (max 1.3889)

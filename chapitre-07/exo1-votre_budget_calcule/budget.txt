@@ -1,0 +1,5 @@
+budget 72 Hz : 13.889 ms
+budget 90 Hz : 11.111 ms
+budget 120 Hz : 8.333 ms
+screen : average 16.661 ms, median 16.661 ms, max 32.219 ms
+no wait : average 11.098 ms, median 11.095 ms, max 20.498 ms

@@ -1,0 +1,3 @@
+room copies : 80
+without lock : average 17.384 ms, standard deviation 3.843 ms, max 47.609 ms
+with lock : average 33.530 ms, standard deviation 1.626 ms, max 59.017 ms

@@ -1,0 +1,3 @@
+fast (90 deg in 400 ms) : with 0.3348 deg, without 3.2047 deg, ratio 9.57
+slow (45 deg in 1500 ms) : with 0.0127 deg, without 0.4166 deg, ratio 32.71
+half-turn (180 deg in 250 ms) : with 1.6605 deg, without 9.9240 deg, ratio 5.98

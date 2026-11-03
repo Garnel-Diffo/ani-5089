@@ -1,0 +1,24 @@
+now = 6662.342 ms, predicted = 6676.231 ms, gap = 13.889 ms
+now = 6678.927 ms, predicted = 6692.816 ms, gap = 13.889 ms
+now = 6695.561 ms, predicted = 6709.450 ms, gap = 13.889 ms
+now = 6712.270 ms, predicted = 6726.159 ms, gap = 13.889 ms
+now = 6728.873 ms, predicted = 6742.762 ms, gap = 13.889 ms
+now = 6745.602 ms, predicted = 6759.491 ms, gap = 13.889 ms
+now = 6762.327 ms, predicted = 6776.216 ms, gap = 13.889 ms
+now = 6778.900 ms, predicted = 6792.789 ms, gap = 13.889 ms
+now = 6795.535 ms, predicted = 6809.424 ms, gap = 13.889 ms
+now = 6812.237 ms, predicted = 6826.125 ms, gap = 13.889 ms
+now = 6828.872 ms, predicted = 6842.761 ms, gap = 13.889 ms
+now = 6845.526 ms, predicted = 6859.415 ms, gap = 13.889 ms
+now = 6862.244 ms, predicted = 6876.133 ms, gap = 13.889 ms
+now = 6878.914 ms, predicted = 6892.803 ms, gap = 13.889 ms
+now = 6895.852 ms, predicted = 6909.741 ms, gap = 13.889 ms
+now = 6912.369 ms, predicted = 6926.258 ms, gap = 13.889 ms
+now = 6929.054 ms, predicted = 6942.943 ms, gap = 13.889 ms
+now = 6945.718 ms, predicted = 6959.607 ms, gap = 13.889 ms
+now = 6962.346 ms, predicted = 6976.235 ms, gap = 13.889 ms
+now = 6979.143 ms, predicted = 6993.031 ms, gap = 13.889 ms
+hz = 72, period = 13.889 ms, real - predicted = 2.773 ms
+hz = 60, period = 16.667 ms, real - predicted = -0.006 ms
+hz = 90, period = 11.111 ms, real - predicted = 5.550 ms
+hz = 120, period = 8.333 ms, real - predicted = 8.328 ms

@@ -1,0 +1,2 @@
+screen : 3602 frames, average 16.661 ms, standard deviation 0.404 ms, max 27.067 ms, over budget 3600
+no wait : 4594 frames, average 13.096 ms, standard deviation 9.034 ms, max 297.897 ms, over budget 2845
