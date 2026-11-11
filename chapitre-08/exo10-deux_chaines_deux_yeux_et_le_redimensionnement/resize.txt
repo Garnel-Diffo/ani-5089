@@ -1,0 +1,15 @@
+REDIMENSIONNE fenetre : 640 x 360 -> 800 x 450
+DETRUIT chaine oeil gauche
+DETRUIT chaine oeil droit
+DETRUIT images oeil gauche
+DETRUIT images oeil droit
+RECREE images oeil gauche : 3 de 400 x 450
+RECREE images oeil droit : 3 de 400 x 450
+RECREE chaine oeil gauche : 3 images
+RECREE chaine oeil droit : 3 images
+REENREGISTRE chaine oeil gauche image 0 : poignee 8531
+REENREGISTRE chaine oeil gauche image 1 : poignee 8535
+REENREGISTRE chaine oeil gauche image 2 : poignee 8539
+REENREGISTRE chaine oeil droit image 0 : poignee 8543
+REENREGISTRE chaine oeil droit image 1 : poignee 8547
+REENREGISTRE chaine oeil droit image 2 : poignee 8551

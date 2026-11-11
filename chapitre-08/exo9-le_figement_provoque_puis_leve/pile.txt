@@ -1,0 +1,35 @@
+Exception 0xc0000005 a l'adresse 0x00007ffc08b068b9 dans le fil 13528 (ecriture a l'adresse 0x166b595f000)
+Pile du fil principal (fil 14168) :
+  #00 0x00007ffc51051024 ntdll!NtWaitForAlertByThreadId + 0x14
+  #01 0x00007ffc51015601 ntdll!RtlSleepConditionVariableSRW + 0x131
+  #02 0x00007ffc4eacee89 KERNELBASE!SleepConditionVariableSRW + 0x29
+  #03 0x00007ffc08b0fd63 vk_swiftshader!vkGetPhysicalDevicePresentRectanglesKHR + 0x203dd3
+  #04 0x00007ffc08b08c80 vk_swiftshader!vkGetPhysicalDevicePresentRectanglesKHR + 0x1fccf0
+  #05 0x00007ffc088dd062 vk_swiftshader!(symbole inconnu)
+  #06 0x00007ffc088fb81d vk_swiftshader!(symbole inconnu)
+  #07 0x00007ffc088fb8e1 vk_swiftshader!(symbole inconnu)
+  #08 0x00007ffc0890bdae vk_swiftshader!vkQueuePresentKHR + 0x5e
+  #09 0x00007ff708556434 cible!ZN8nkentseu14NkVulkanDevice16SubmitAndPresentEPNS_16NkICommandBufferE + 0x1a4
+  #10 0x00007ff70846e327 cible!ZN8nkentseu8renderer14NkRendererImpl7PresentEv + 0xd7
+  #11 0x00007ff708442bdc cible!nkmain + 0x18bc  [cible.cpp:298]
+  #12 0x00007ff7084411e5 cible!WinMain + 0x1e5  [NkWindowsDesktop.h:86]
+  #13 0x00007ff7084e7566 cible!main + 0xb6  [crtexewin.c:66]
+  #14 0x00007ff70844520d cible!__tmainCRTStartup + 0x1cd  [crtexe.c:259]
+  #15 0x00007ff70844527c cible!mainCRTStartup + 0x1c  [crtexe.c:181]
+  #16 0x00007ffc4f007124 KERNEL32!BaseThreadInitThunk + 0x14
+  #17 0x00007ffc50ffcc91 ntdll!RtlUserThreadStart + 0x21
+Pile du fil qui plante (fil 13528) :
+  #00 0x00007ffc08b068b9 vk_swiftshader!vkGetPhysicalDevicePresentRectanglesKHR + 0x1fa929
+  #01 0x00007ffc08918f77 vk_swiftshader!vkGetPhysicalDevicePresentRectanglesKHR + 0xcfe7
+  #02 0x00007ffc089186c7 vk_swiftshader!vkGetPhysicalDevicePresentRectanglesKHR + 0xc737
+  #03 0x00007ffc088f1deb vk_swiftshader!(symbole inconnu)
+  #04 0x00007ffc088f32e1 vk_swiftshader!(symbole inconnu)
+  #05 0x00007ffc088e0f48 vk_swiftshader!(symbole inconnu)
+  #06 0x00007ffc088d5a9c vk_swiftshader!(symbole inconnu)
+  #07 0x00007ffc088d57ec vk_swiftshader!(symbole inconnu)
+  #08 0x00007ffc088fb466 vk_swiftshader!(symbole inconnu)
+  #09 0x00007ffc088fac15 vk_swiftshader!(symbole inconnu)
+  #10 0x00007ffc088fbb61 vk_swiftshader!(symbole inconnu)
+  #11 0x00007ffc08c97aff vk_swiftshader!vkGetPhysicalDevicePresentRectanglesKHR + 0x38bb6f
+  #12 0x00007ffc4f007124 KERNEL32!BaseThreadInitThunk + 0x14
+  #13 0x00007ffc50ffcc91 ntdll!RtlUserThreadStart + 0x21

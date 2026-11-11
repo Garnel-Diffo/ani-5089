@@ -1,0 +1,2 @@
+image : 1, etat : dessinee
+image : 2, etat : plantee

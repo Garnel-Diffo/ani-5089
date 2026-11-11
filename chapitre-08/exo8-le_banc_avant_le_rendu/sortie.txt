@@ -1,0 +1,11 @@
+anneau de 3 images
+tour 1 : AcquireImage -> 0, ReleaseImage -> ok, derniere rendue 0, anneau sur 1
+tour 2 : AcquireImage -> 1, ReleaseImage -> ok, derniere rendue 1, anneau sur 2
+tour 3 : AcquireImage -> 2, ReleaseImage -> ok, derniere rendue 2, anneau sur 0
+tour 4 : AcquireImage -> 0, ReleaseImage -> ok, derniere rendue 0, anneau sur 1
+tour 5 : AcquireImage -> 1, ReleaseImage -> ok, derniere rendue 1, anneau sur 2
+tour 6 : AcquireImage -> 2, ReleaseImage -> ok, derniere rendue 2, anneau sur 0
+refus 1 : AcquireImage deux fois de suite -> ok puis refuse (index inchange : 77)
+refus 2 : ReleaseImage sans emprunt -> refuse (anneau sur 1 avant, 1 apres)
+refus 3 : Create(5) avec un maximum de 4 -> refuse (chaine valide : non)
+bilan : 6 tours, 3 refus, 0 echec(s)

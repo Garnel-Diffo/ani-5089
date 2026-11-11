@@ -7,8 +7,6 @@
 #  construites (Debug et Release), les nuanceurs de NKRenderer. Aucun clone du
 #  moteur, aucun SDK a installer.
 # =============================================================================
-import sys
-
 from Jenga import *
 
 with workspace("MaSalleWks", location="."):
@@ -43,14 +41,20 @@ with workspace("MaSalleWks", location="."):
         targetdir("%{wks.location}/Build/Bin/%{cfg.buildcfg}-%{cfg.system}/%{prj.name}")
 
         # NKRenderer lit ses nuanceurs dans Resources/NKRenderer/Shaders, RELATIF AU
-        # DOSSIER COURANT. On les copie depuis le kit : dans ce dossier (lancez le
-        # programme d'ici) et a cote de l'executable. sys.executable est le Python qui
-        # fait tourner Jenga : il existe forcement.
-        _COPIE = ('"' + sys.executable + '" -c "import shutil, sys; '
-                  'shutil.copytree(sys.argv[1], sys.argv[2], dirs_exist_ok=True)" '
-                  '"%{wks.location}/Kits/R3D/Resources/NKRenderer/Shaders" ')
-        postbuild([
-            _COPIE + '"%{wks.location}/Resources/NKRenderer/Shaders"',
-            _COPIE + '"%{wks.location}/Build/Bin/%{cfg.buildcfg}-%{cfg.system}/%{prj.name}'
-                     '/Resources/NKRenderer/Shaders"',
-        ])
+        # DOSSIER COURANT. On les copie depuis le kit : dans ce dossier (NKCode lance
+        # le programme d'ici) et a cote de l'executable. Une commande du systeme, sans
+        # Python : sous NKCode, le Python de Jenga est NKCode lui-meme, et le relancer
+        # rouvrait NKCode au lieu de copier (31 octobre 2026). Pas de robocopy : il
+        # rend 1 quand la copie reussit, et la construction echouerait. Le dossier
+        # copie est vide d'abord : un nuanceur d'un ancien kit, reste la, pouvait se faire
+        # charger a la place du nouveau (« softness is not a member of ShadowUBO »).
+        _SRC = "%{wks.location}/Kits/R3D/Resources/NKRenderer/Shaders"
+        _DST = ["%{wks.location}/Resources/NKRenderer/Shaders",
+                "%{prj.targetdir}/Resources/NKRenderer/Shaders"]
+        with filter("system:Windows"):
+            postbuild([c for d in _DST for c in ('if exist "%s" rmdir /S /Q "%s"' % (d, d),
+                                                 'xcopy /E /I /Y /Q "%s" "%s"' % (_SRC, d))])
+        with filter("system:Linux"):
+            postbuild(['rm -rf "%s" && mkdir -p "%s" && cp -R "%s/." "%s"' % (d, d, _SRC, d) for d in _DST])
+        with filter("system:macOS"):
+            postbuild(['rm -rf "%s" && mkdir -p "%s" && cp -R "%s/." "%s"' % (d, d, _SRC, d) for d in _DST])
