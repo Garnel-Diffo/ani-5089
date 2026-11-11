@@ -1,10 +1,13 @@
-anneau de 3 images
-tour 1 : AcquireImage -> 0, ReleaseImage -> ok, derniere rendue 0, anneau sur 1
-tour 2 : AcquireImage -> 1, ReleaseImage -> ok, derniere rendue 1, anneau sur 2
-tour 3 : AcquireImage -> 2, ReleaseImage -> ok, derniere rendue 2, anneau sur 0
-tour 4 : AcquireImage -> 0, ReleaseImage -> ok, derniere rendue 0, anneau sur 1
-tour 5 : AcquireImage -> 1, ReleaseImage -> ok, derniere rendue 1, anneau sur 2
-tour 6 : AcquireImage -> 2, ReleaseImage -> ok, derniere rendue 2, anneau sur 0
+anneau de trois images, six tours
+AcquireImage -> image 0, ReleaseImage -> ok
+AcquireImage -> image 1, ReleaseImage -> ok
+AcquireImage -> image 2, ReleaseImage -> ok
+AcquireImage -> image 0, ReleaseImage -> ok
+AcquireImage -> image 1, ReleaseImage -> ok
+AcquireImage -> image 2, ReleaseImage -> ok
+images pretees : 0 1 2 0 1 2
+dernieres rendues : 0 1 2 0 1 2
+anneau apres chaque rendu : 1 2 0 1 2 0
 refus 1 : AcquireImage deux fois de suite -> ok puis refuse (index inchange : 77)
 refus 2 : ReleaseImage sans emprunt -> refuse (anneau sur 1 avant, 1 apres)
 refus 3 : Create(5) avec un maximum de 4 -> refuse (chaine valide : non)
