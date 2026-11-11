@@ -1,11 +1,18 @@
-anneau de trois images, six tours
-AcquireImage -> image 0, ReleaseImage -> ok
-AcquireImage -> image 1, ReleaseImage -> ok
-AcquireImage -> image 2, ReleaseImage -> ok
-AcquireImage -> image 0, ReleaseImage -> ok
-AcquireImage -> image 1, ReleaseImage -> ok
-AcquireImage -> image 2, ReleaseImage -> ok
-images pretees : 0 1 2 0 1 2
+anneau de 3 images, 6 tours
+images pretees, une par ligne :
+0
+1
+2
+0
+1
+2
+tour 1 : AcquireImage -> image 0, ReleaseImage -> ok
+tour 2 : AcquireImage -> image 1, ReleaseImage -> ok
+tour 3 : AcquireImage -> image 2, ReleaseImage -> ok
+tour 4 : AcquireImage -> image 0, ReleaseImage -> ok
+tour 5 : AcquireImage -> image 1, ReleaseImage -> ok
+tour 6 : AcquireImage -> image 2, ReleaseImage -> ok
+bouclage : 0 -> 1 -> 2 -> 0 -> 1 -> 2
 dernieres rendues : 0 1 2 0 1 2
 anneau apres chaque rendu : 1 2 0 1 2 0
 refus 1 : AcquireImage deux fois de suite -> ok puis refuse (index inchange : 77)

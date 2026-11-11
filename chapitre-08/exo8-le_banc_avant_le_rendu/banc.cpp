@@ -4,8 +4,11 @@
 //
 // Premiere partie : six tours sur un anneau de trois images, avec les quatre temps a chaque tour
 // (emprunter, rendre, puis lire quelle image soumettre). L'anneau doit BOUCLER : 0 1 2 0 1 2.
-// Chaque ligne de tour ne porte qu'un seul nombre, l'image pretee, pour que la suite se lise
-// d'un coup d'oeil ; les lignes qui suivent la resument.
+// La sortie montre ce bouclage de trois facons, pour qu'on le lise sans effort :
+//   - la suite brute des images pretees, un nombre par ligne ;
+//   - le detail de chaque tour, avec un seul nombre d'image par ligne ;
+//   - la boucle ecrite d'une traite (0 -> 1 -> 2 -> 0 ...), puis les images rendues et la
+//     position de l'anneau apres chaque rendu.
 // Seconde partie : les trois refus : emprunter deux fois de suite, rendre sans avoir emprunte,
 // creer une chaine plus grande que le maximum.
 //
@@ -27,11 +30,12 @@ void Verifie(bool condition, const char *quoi) {
     }
 }
 
-// Ecrit `titre : v0 v1 v2 ...` : une seule ligne, les valeurs separees par une espace.
-void EcritLaSuite(const char *titre, const std::uint32_t *valeurs, std::uint32_t nombre) {
-    std::printf("%s :", titre);
-    for (std::uint32_t i = 0; i < nombre; ++i) {
-        std::printf(" %u", valeurs[i]);
+// Ecrit `titre : v0 <separateur> v1 <separateur> v2 ...` sur une seule ligne.
+void EcritLaSuite(const char *titre, const std::uint32_t *valeurs, std::uint32_t nombre,
+                  const char *separateur) {
+    std::printf("%s : %u", titre, valeurs[0]);
+    for (std::uint32_t i = 1; i < nombre; ++i) {
+        std::printf("%s%u", separateur, valeurs[i]);
     }
     std::printf("\n");
 }
@@ -42,30 +46,38 @@ int main() {
     ChaineEchange chaine;
     Verifie(chaine.Create(3), "creer une chaine de 3 images");
 
+    // Les six tours, joues d'abord, ecrits ensuite.
     const std::uint32_t kTours = 6;
     std::uint32_t pretees[kTours] = {};      // l'image pretee a chaque tour (temps 1)
+    bool rendues[kTours] = {};               // le rendu a-t-il ete accepte (temps 3) ?
     std::uint32_t dernieres[kTours] = {};    // la derniere image rendue (temps 4)
     std::uint32_t anneau[kTours] = {};       // l'image sur laquelle pointe l'anneau apres le rendu
-
-    std::printf("anneau de trois images, six tours\n");
     for (std::uint32_t tour = 0; tour < kTours; ++tour) {
         std::uint32_t emprunte = 99;
         const bool prete = chaine.AcquireImage(emprunte);   // temps 1 (le rendu, temps 2, n'est
                                                             // pas ecrit ici)
-        const bool rendue = chaine.ReleaseImage();          // temps 3 : rend l'image ET avance
+        rendues[tour] = chaine.ReleaseImage();              // temps 3 : rend l'image ET avance
         pretees[tour] = emprunte;
         dernieres[tour] = chaine.GetLastReleasedIndex();    // temps 4 : ce qu'on soumet
         anneau[tour] = chaine.GetNextImage();
-        std::printf("AcquireImage -> image %u, ReleaseImage -> %s\n", emprunte,
-                    rendue ? "ok" : "refuse");
-        Verifie(prete && rendue, "un tour complet reussit");
+        Verifie(prete && rendues[tour], "un tour complet reussit");
         Verifie(emprunte == tour % 3, "l'anneau prete 0 1 2 0 1 2");
         Verifie(dernieres[tour] == emprunte,
                 "on soumet la derniere image RENDUE, pas la suivante");
     }
-    EcritLaSuite("images pretees", pretees, kTours);
-    EcritLaSuite("dernieres rendues", dernieres, kTours);
-    EcritLaSuite("anneau apres chaque rendu", anneau, kTours);
+
+    std::printf("anneau de %u images, %u tours\n", chaine.GetImageCount(), kTours);
+    std::printf("images pretees, une par ligne :\n");
+    for (std::uint32_t tour = 0; tour < kTours; ++tour) {
+        std::printf("%u\n", pretees[tour]);
+    }
+    for (std::uint32_t tour = 0; tour < kTours; ++tour) {
+        std::printf("tour %u : AcquireImage -> image %u, ReleaseImage -> %s\n", tour + 1,
+                    pretees[tour], rendues[tour] ? "ok" : "refuse");
+    }
+    EcritLaSuite("bouclage", pretees, kTours, " -> ");
+    EcritLaSuite("dernieres rendues", dernieres, kTours, " ");
+    EcritLaSuite("anneau apres chaque rendu", anneau, kTours, " ");
 
     // Refus 1 : le double emprunt. Le second AcquireImage echoue et ne change rien : le rendu qui
     // suit reussit.
