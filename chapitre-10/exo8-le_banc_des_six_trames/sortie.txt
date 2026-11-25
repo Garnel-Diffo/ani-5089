@@ -1,0 +1,9 @@
+image rend couches index
+1 OUI 1 0
+2 OUI 1 1
+3 NON 0 -
+4 NON 0 -
+5 OUI 1 2
+6 OUI 1 0
+RENDUES 4
+FINS 6
